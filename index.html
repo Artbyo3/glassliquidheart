@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Glass Liquid Heart | Procedural Graphics Studio</title>
-  <meta name="description" content="Next-gen procedural Metalheart, Liquid Metal, Liquid Glass, and Y2K aesthetic graphics generator.">
+  <title>Glass Liquid Heart</title>
+  <meta name="description" content="Procedural canvas generator.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💖</text></svg>">
 
   <!-- Embedded base64 woff2 fonts -->
@@ -125,37 +125,11 @@
       filter: drop-shadow(0 0 6px #c285ff);
     }
 
-    .brand-meta {
-      display: flex;
-      flex-direction: column;
-    }
     .brand-title {
       font-size: 15px;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      background: var(--accent-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .brand-badge {
-      font-size: 9px;
       font-weight: 700;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      padding: 2px 6px;
-      border-radius: 100px;
-      background: rgba(120, 183, 255, 0.12);
-      color: var(--accent-c1);
-      border: 1px solid rgba(120, 183, 255, 0.3);
-      -webkit-text-fill-color: initial;
-    }
-    .brand-desc {
-      font-size: 11px;
-      color: var(--text-muted);
-      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: var(--text-main);
     }
 
     /* Mode Segmented Switch */
@@ -1064,10 +1038,7 @@
           </defs>
         </svg>
       </div>
-      <div class="brand-meta">
-        <h1 class="brand-title">GLASS LIQUID HEART <span class="brand-badge">Procedural Studio</span></h1>
-        <p class="brand-desc">Procedural Metalheart & Liquid Glass Generator</p>
-      </div>
+      <h1 class="brand-title">Glass Liquid Heart</h1>
     </div>
 
     <!-- Center Mode Switcher -->
@@ -1154,11 +1125,9 @@
 
       <!-- Stage Footer / Status Bar -->
       <div class="stage-footer">
-        <div class="footer-tip">
-          <span>💡 Studio Tip:</span> Keep primary text and focal elements in the centre focus zone to remain visible across all device viewports.
-        </div>
+        <div style="font-family: var(--font-mono); font-size: 11px; color: var(--text-muted);" id="footer-dimensions">1920 × 1080</div>
         <div class="footer-status" id="info">
-          Ready to generate
+          Ready
         </div>
       </div>
     </section>
@@ -2131,20 +2100,40 @@
 
     function grain(W, H) {
       const g = +$('grain').value;
-      if (!g) return;
+      if (!g || g <= 0) return;
+
+      const S = 256;
       const n = document.createElement('canvas');
-      n.width = n.height = 256;
-      const x = n.getContext('2d'), im = x.createImageData(256, 256);
-      for (let i = 0; i < 65536; i++) {
-        const v = Math.random() * 255;
-        im.data.set([v, v, v, 255], i * 4);
+      n.width = n.height = S;
+      const x = n.getContext('2d');
+      const im = x.createImageData(S, S);
+      const d = im.data;
+
+      // Calibrated grain strength: visible across darks, midtones, and highlights
+      const alphaMax = Math.min(255, Math.round(20 + (g / 300) * 200));
+
+      for (let i = 0; i < d.length; i += 4) {
+        const isBright = Math.random() > 0.5;
+        const lum = isBright ? 255 : 0;
+        const a = Math.round(Math.random() * alphaMax);
+        d[i] = lum;
+        d[i + 1] = lum;
+        d[i + 2] = lum;
+        d[i + 3] = a;
       }
       x.putImageData(im, 0, 0);
+
       ctx.save();
-      ctx.globalAlpha = g / 700;
-      ctx.globalCompositeOperation = 'overlay';
-      ctx.fillStyle = ctx.createPattern(n, 'repeat');
-      ctx.fillRect(0, 0, W, H);
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      const pat = ctx.createPattern(n, 'repeat');
+      
+      // Grain scale: 2x on high-res so noise particles don't cancel out when fitted on screen
+      const grainScale = W >= 1200 ? 2 : 1;
+      ctx.scale(grainScale, grainScale);
+      ctx.fillStyle = pat;
+      ctx.globalAlpha = 1.0;
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.fillRect(0, 0, W / grainScale, H / grainScale);
       ctx.restore();
     }
 
@@ -2504,6 +2493,8 @@
       const g = gcd(W, H);
       const aspect = (W / g <= 32 && H / g <= 32) ? `${W / g}:${H / g}` : (W / H).toFixed(2) + ':1';
       $('aspect-indicator').textContent = aspect;
+      const footDim = $('footer-dimensions');
+      if (footDim) footDim.textContent = `${W} × ${H} px (${aspect})`;
     }
 
     function go(newSeed) {
