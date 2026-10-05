@@ -1,0 +1,2923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Glass Liquid Heart | BOOTH Aesthetic Studio</title>
+  <meta name="description" content="Next-gen procedural Metalheart, Liquid Metal, Liquid Glass, and Y2K aesthetic background & header generator for BOOTH shops.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💖</text></svg>">
+
+  <!-- Embedded base64 woff2 fonts -->
+  <link rel="stylesheet" href="fonts.css">
+
+  <!-- Google Fonts for UI & Japanese Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&family=Zen+Maru+Gothic:wght@700&family=Potta+One&family=Reggae+One&family=Rampart+One&family=DotGothic16&family=Yusei+Magic&family=RocknRoll+One&family=Train+One&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-base: #0a0b10;
+      --bg-surface: #12141c;
+      --bg-surface-elevated: #181b26;
+      --bg-surface-glass: rgba(18, 20, 28, 0.72);
+      --bg-input: #1d2130;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-focus: rgba(120, 183, 255, 0.5);
+      --border-glass: rgba(255, 255, 255, 0.12);
+      --text-main: #f0f3fa;
+      --text-muted: #8e95aa;
+      --text-faint: #575e74;
+      --accent-c1: #78b7ff;
+      --accent-c2: #c285ff;
+      --accent-c3: #66ffc2;
+      --accent-gradient: linear-gradient(135deg, #78b7ff 0%, #c285ff 50%, #66ffc2 100%);
+      --accent-primary: #78b7ff;
+      --accent-danger: #fc4d50;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --radius-xl: 20px;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.35);
+      --shadow-glow: 0 0 20px rgba(120, 183, 255, 0.2);
+      --sidebar-width: 420px;
+      --header-height: 64px;
+      --font-ui: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background-color: var(--bg-base);
+      color: var(--text-main);
+      font-family: var(--font-ui);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 15% 10%, rgba(120, 183, 255, 0.06) 0%, transparent 40%),
+        radial-gradient(circle at 85% 85%, rgba(194, 133, 255, 0.06) 0%, transparent 45%);
+      background-attachment: fixed;
+    }
+
+    /* Scrollbars */
+    ::-webkit-scrollbar {
+      width: 7px;
+      height: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-base);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--bg-input);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--text-faint);
+    }
+
+    /* Studio Header */
+    header.studio-header {
+      height: var(--header-height);
+      background: var(--bg-surface-glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, #1f2538 0%, #11131a 100%);
+      border: 1px solid var(--border-glass);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 16px rgba(194, 133, 255, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+    .brand-icon svg {
+      width: 20px;
+      height: 20px;
+      filter: drop-shadow(0 0 6px #c285ff);
+    }
+
+    .brand-meta {
+      display: flex;
+      flex-direction: column;
+    }
+    .brand-title {
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .brand-badge {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 2px 6px;
+      border-radius: 100px;
+      background: rgba(120, 183, 255, 0.12);
+      color: var(--accent-c1);
+      border: 1px solid rgba(120, 183, 255, 0.3);
+      -webkit-text-fill-color: initial;
+    }
+    .brand-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* Mode Segmented Switch */
+    .mode-switch {
+      display: flex;
+      background: var(--bg-input);
+      padding: 3px;
+      border-radius: 100px;
+      border: 1px solid var(--border-subtle);
+      position: relative;
+    }
+    .mode-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 100px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      user-select: none;
+    }
+    .mode-btn svg {
+      width: 14px;
+      height: 14px;
+      opacity: 0.7;
+    }
+    .mode-btn.active {
+      background: var(--bg-surface-elevated);
+      color: var(--text-main);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--border-glass);
+    }
+    .mode-btn.active svg {
+      opacity: 1;
+      color: var(--accent-c1);
+    }
+
+    /* Header Quick Actions */
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Buttons */
+    .btn {
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 8px 14px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-surface-elevated);
+      color: var(--text-main);
+      cursor: pointer;
+      transition: all 0.18s ease;
+      user-select: none;
+      white-space: nowrap;
+    }
+    .btn:hover {
+      background: #222638;
+      border-color: var(--border-glass);
+      transform: translateY(-1px);
+    }
+    .btn:active {
+      transform: translateY(0);
+    }
+    .btn svg {
+      width: 15px;
+      height: 15px;
+      flex-shrink: 0;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #2b6cb0 0%, #7b2cbf 100%);
+      border: 1px solid rgba(194, 133, 255, 0.4);
+      color: #fff;
+      box-shadow: 0 0 16px rgba(123, 44, 191, 0.3);
+    }
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #3182ce 0%, #9d4edd 100%);
+      border-color: rgba(194, 133, 255, 0.6);
+      box-shadow: 0 0 22px rgba(157, 78, 221, 0.45);
+    }
+
+    .btn-accent {
+      background: var(--accent-gradient);
+      color: #0c0e14;
+      font-weight: 700;
+      border: none;
+      box-shadow: 0 0 18px rgba(120, 183, 255, 0.3);
+    }
+    .btn-accent:hover {
+      filter: brightness(1.1);
+      box-shadow: 0 0 24px rgba(102, 255, 194, 0.4);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border-color: transparent;
+      color: var(--text-muted);
+    }
+    .btn-ghost:hover {
+      background: var(--bg-input);
+      color: var(--text-main);
+    }
+
+    .btn-sm {
+      padding: 5px 10px;
+      font-size: 11px;
+      border-radius: var(--radius-sm);
+    }
+
+    .kbd {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 1px 5px;
+      border-radius: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--text-muted);
+    }
+
+    /* Main Studio Container */
+    .studio-layout {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr var(--sidebar-width);
+      min-height: calc(100vh - var(--header-height));
+      position: relative;
+    }
+
+    /* Left: Viewport Stage */
+    .viewport-stage {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      background: radial-gradient(circle at center, #131622 0%, #0a0b10 100%);
+      overflow: hidden;
+    }
+
+    /* Viewport Stage Bar */
+    .stage-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      background: rgba(10, 11, 16, 0.5);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-subtle);
+      z-index: 10;
+    }
+
+    .viewport-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .res-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      background: var(--bg-surface-elevated);
+      padding: 4px 10px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .res-badge b {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .stage-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tool-toggle {
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+    .tool-toggle:hover {
+      background: #202435;
+      color: var(--text-main);
+    }
+    .tool-toggle.active {
+      background: rgba(120, 183, 255, 0.14);
+      color: var(--accent-c1);
+      border-color: rgba(120, 183, 255, 0.4);
+    }
+    .tool-toggle svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* Canvas Viewport Area */
+    .canvas-viewport {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      position: relative;
+      overflow: auto;
+      user-select: none;
+    }
+
+    .canvas-container {
+      position: relative;
+      display: inline-flex;
+      border-radius: var(--radius-md);
+      box-shadow: 
+        0 10px 40px rgba(0, 0, 0, 0.6),
+        0 0 0 1px var(--border-subtle);
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      max-width: 100%;
+    }
+
+    canvas#cv {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      border-radius: var(--radius-md);
+      background: #000;
+    }
+
+    /* Safe Guides Overlay */
+    #guide {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      display: none;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+    #guide i {
+      position: absolute;
+      border: 1.5px dashed rgba(255, 255, 255, 0.8);
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.6);
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    #guide i::before {
+      content: 'PC SAFE AREA';
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      font-size: 9px;
+      font-weight: 700;
+      color: #fff;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 2px 6px;
+      border-radius: 3px;
+      letter-spacing: 0.05em;
+    }
+    #guide b {
+      position: absolute;
+      border: 1.5px dashed #ffd166;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 50%;
+      height: 50%;
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.7);
+    }
+    #guide b::before {
+      content: 'PHONE SAFE ZONE';
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      font-size: 9px;
+      font-weight: 700;
+      color: #ffd166;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 2px 6px;
+      border-radius: 3px;
+      letter-spacing: 0.05em;
+    }
+
+    /* Stage Footer / Info Bar */
+    .stage-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      background: var(--bg-surface-glass);
+      backdrop-filter: blur(8px);
+      border-top: 1px solid var(--border-subtle);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .footer-tip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      max-width: 60%;
+    }
+    .footer-tip span {
+      color: #ffd166;
+    }
+    .footer-status {
+      font-family: var(--font-mono);
+      color: var(--accent-c3);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .footer-status::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-c3);
+      box-shadow: 0 0 8px var(--accent-c3);
+    }
+
+    /* Right: Studio Inspector Sidebar */
+    .studio-sidebar {
+      background: var(--bg-surface);
+      border-left: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      height: calc(100vh - var(--header-height));
+      position: sticky;
+      top: var(--header-height);
+      overflow-y: auto;
+    }
+
+    .inspector-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg-surface-glass);
+      position: sticky;
+      top: 0;
+      z-index: 5;
+    }
+    .inspector-title {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .inspector-title svg {
+      width: 14px;
+      height: 14px;
+      color: var(--accent-c1);
+    }
+
+    /* Accordion Section */
+    .panel-section {
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .panel-header {
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      user-select: none;
+      background: transparent;
+      transition: background 0.15s ease;
+    }
+    .panel-header:hover {
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .panel-title {
+      font-size: 13px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text-main);
+    }
+    .panel-title svg {
+      width: 16px;
+      height: 16px;
+      color: var(--accent-c2);
+    }
+    .panel-chevron {
+      color: var(--text-faint);
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .panel-section.open .panel-chevron {
+      transform: rotate(180deg);
+      color: var(--text-muted);
+    }
+    .panel-body {
+      padding: 0 20px 20px 20px;
+      display: none;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .panel-section.open .panel-body {
+      display: flex;
+    }
+
+    /* Form Controls */
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .field-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .field-label .val-badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--accent-c1);
+      background: var(--bg-input);
+      padding: 1px 6px;
+      border-radius: 4px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .input-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .input-row-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+    }
+
+    /* Text & Number Inputs */
+    input[type="text"],
+    input[type="number"],
+    select {
+      width: 100%;
+      height: 38px;
+      background: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      color: var(--text-main);
+      font-family: inherit;
+      font-size: 12px;
+      padding: 0 12px;
+      outline: none;
+      transition: all 0.15s ease;
+    }
+    input[type="text"]:focus,
+    input[type="number"]:focus,
+    select:focus {
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px rgba(120, 183, 255, 0.12);
+      background: #22273a;
+    }
+    select {
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%238e95aa' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: calc(100% - 12px) center;
+      padding-right: 32px;
+    }
+    select optgroup {
+      background: var(--bg-surface-elevated);
+      color: var(--accent-c1);
+      font-weight: 700;
+      font-style: normal;
+    }
+    select option {
+      background: var(--bg-surface);
+      color: var(--text-main);
+      padding: 8px;
+    }
+
+    /* Range Sliders */
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 6px;
+      background: var(--bg-input);
+      border-radius: 10px;
+      outline: none;
+      cursor: pointer;
+      position: relative;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #f0f3fa;
+      border: 2px solid #78b7ff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), 0 0 10px rgba(120, 183, 255, 0.5);
+      cursor: pointer;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6), 0 0 14px rgba(120, 183, 255, 0.8);
+    }
+    input[type="range"]::-moz-range-thumb {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #f0f3fa;
+      border: 2px solid #78b7ff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+      cursor: pointer;
+    }
+
+    /* Color Swatches Grid */
+    .color-swatches-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+    }
+    .color-picker-card {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      background: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 8px;
+      position: relative;
+    }
+    .color-picker-card:hover {
+      border-color: var(--border-glass);
+    }
+    .color-preview-box {
+      width: 100%;
+      height: 32px;
+      border-radius: var(--radius-sm);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+    }
+    .color-preview-box input[type="color"] {
+      position: absolute;
+      inset: -10px;
+      width: 200%;
+      height: 200%;
+      opacity: 0;
+      cursor: pointer;
+    }
+    .color-card-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 10px;
+      font-weight: 600;
+    }
+    .color-label-tag {
+      color: var(--text-muted);
+    }
+    .color-hex-tag {
+      font-family: var(--font-mono);
+      color: var(--text-main);
+    }
+
+    /* Palettes Grid */
+    .palettes-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .palette-pill {
+      background: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      border-radius: 100px;
+      padding: 4px 10px 4px 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--text-muted);
+      transition: all 0.15s ease;
+    }
+    .palette-pill:hover {
+      background: #252a3d;
+      color: var(--text-main);
+      border-color: var(--border-glass);
+      transform: translateY(-1px);
+    }
+    .palette-pill.active {
+      background: rgba(120, 183, 255, 0.12);
+      border-color: rgba(120, 183, 255, 0.4);
+      color: var(--accent-c1);
+    }
+    .palette-dots {
+      display: flex;
+      gap: 2px;
+    }
+    .palette-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    /* Switch Toggles (iOS / Figma style) */
+    .switches-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .switch-card {
+      background: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: border-color 0.15s ease;
+    }
+    .switch-card:hover {
+      border-color: var(--border-glass);
+    }
+    .switch-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .switch-toggle {
+      width: 34px;
+      height: 18px;
+      background: #2d3247;
+      border-radius: 100px;
+      position: relative;
+      transition: background 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      flex-shrink: 0;
+    }
+    .switch-toggle::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #8e95aa;
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s;
+    }
+    .switch-card input[type="checkbox"] {
+      display: none;
+    }
+    .switch-card input[type="checkbox"]:checked + .switch-toggle {
+      background: #2e6fd9;
+    }
+    .switch-card input[type="checkbox"]:checked + .switch-toggle::after {
+      transform: translateX(16px);
+      background: #ffffff;
+    }
+
+    /* Alignment Segmented Control */
+    .segmented-control {
+      display: flex;
+      background: var(--bg-input);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      padding: 3px;
+      gap: 2px;
+    }
+    .segmented-btn {
+      flex: 1;
+      background: transparent;
+      border: none;
+      border-radius: var(--radius-sm);
+      color: var(--text-muted);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 6px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+    .segmented-btn.active {
+      background: var(--bg-surface-elevated);
+      color: var(--text-main);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--border-glass);
+    }
+
+    /* Quick Action Grid in Sidebar */
+    .button-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    /* Modal for Seamless Tile Inspection */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 5, 8, 0.82);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .modal-overlay.open {
+      display: flex;
+      animation: modalFadeIn 0.2s ease-out;
+    }
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: scale(0.98); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .modal-container {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-md);
+      width: 100%;
+      max-width: 1000px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .modal-header {
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .modal-title {
+      font-size: 15px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .modal-body {
+      padding: 24px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .tile-preview-stage {
+      width: 100%;
+      height: 480px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      background-size: 33.333% 50%;
+      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+      position: relative;
+    }
+    .tile-mockup-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(2px);
+      pointer-events: none;
+    }
+    .mock-shop-card {
+      background: rgba(22, 24, 34, 0.9);
+      border: 1px solid var(--border-glass);
+      border-radius: 16px;
+      padding: 24px 32px;
+      text-align: center;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6);
+      max-width: 400px;
+    }
+    .mock-avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--accent-gradient);
+      margin: 0 auto 12px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      box-shadow: 0 0 20px rgba(120, 183, 255, 0.4);
+    }
+
+    /* Toast Notifications */
+    .toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 9999;
+      pointer-events: none;
+    }
+    .toast {
+      background: rgba(24, 27, 38, 0.95);
+      border: 1px solid var(--border-glass);
+      color: var(--text-main);
+      padding: 12px 18px;
+      border-radius: var(--radius-md);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(12px);
+      font-size: 12px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      animation: toastSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.2s ease;
+      pointer-events: auto;
+    }
+    .toast.hide {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    @keyframes toastSlideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .studio-layout {
+        grid-template-columns: 1fr;
+      }
+      .studio-sidebar {
+        height: auto;
+        border-left: none;
+        border-top: 1px solid var(--border-subtle);
+      }
+      header.studio-header {
+        padding: 0 14px;
+      }
+      .brand-desc {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Studio Navigation Bar -->
+  <header class="studio-header">
+    <div class="brand-group">
+      <div class="brand-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" fill="url(#brandGrad)"/>
+          <defs>
+            <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#78b7ff"/>
+              <stop offset="50%" stop-color="#c285ff"/>
+              <stop offset="100%" stop-color="#66ffc2"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <div class="brand-meta">
+        <h1 class="brand-title">GLASS LIQUID HEART <span class="brand-badge">BOOTH Studio</span></h1>
+        <p class="brand-desc">Procedural Metalheart & Liquid Glass Generator</p>
+      </div>
+    </div>
+
+    <!-- Center Mode Switcher -->
+    <div class="mode-switch">
+      <button class="mode-btn active" id="btn-mode-bg" data-mode="Background">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        Shop Background
+      </button>
+      <button class="mode-btn" id="btn-mode-hd" data-mode="Header">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="10" rx="2"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+        Shop Header
+      </button>
+      <!-- Hidden compatibility select for existing code -->
+      <select id="mode" style="display:none;"><option selected>Background</option><option>Header</option></select>
+    </div>
+
+    <!-- Header Actions -->
+    <div class="header-actions">
+      <button class="btn" id="rnd" title="Generate new procedural variation (Space)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="8" cy="8" r="1.5"/><circle cx="16" cy="8" r="1.5"/><circle cx="8" cy="16" r="1.5"/><circle cx="16" cy="16" r="1.5"/><circle cx="12" cy="12" r="1.5"/></svg>
+        Randomize <span class="kbd">Space</span>
+      </button>
+      <div style="width: 110px;">
+        <select id="fmt" title="Download Format" style="height: 34px; padding: 0 8px;">
+          <option value="image/png" selected>PNG (HQ)</option>
+          <option value="image/jpeg">JPG (Lite)</option>
+        </select>
+      </div>
+      <button class="btn btn-accent" id="dl">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Export
+      </button>
+    </div>
+  </header>
+
+  <!-- Studio Main Layout -->
+  <main class="studio-layout">
+
+    <!-- Viewport Stage (Center) -->
+    <section class="viewport-stage">
+      <div class="stage-toolbar">
+        <div class="viewport-meta">
+          <div class="res-badge">
+            <span id="res-indicator">1920 × 1080</span>
+            <b id="aspect-indicator">16:9</b>
+          </div>
+          <div class="res-badge" id="zoom-indicator">
+            Fit View
+          </div>
+        </div>
+
+        <div class="stage-controls">
+          <div style="display:flex;align-items:center;background:var(--bg-surface-elevated);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);overflow:hidden;">
+            <button class="btn btn-sm btn-ghost" id="btn-zoom-out" style="padding:4px 8px;" title="Zoom Out">−</button>
+            <button class="btn btn-sm btn-ghost" id="btn-zoom-fit" style="padding:4px 8px;font-size:11px;" title="Fit View">Fit</button>
+            <button class="btn btn-sm btn-ghost" id="btn-zoom-100" style="padding:4px 8px;font-size:11px;" title="100% Scale">100%</button>
+            <button class="btn btn-sm btn-ghost" id="btn-zoom-in" style="padding:4px 8px;" title="Zoom In">+</button>
+          </div>
+          <button class="tool-toggle" id="btn-toggle-guides" title="Toggle BOOTH Safe Zone Overlays (G)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg>
+            Safe Guides <span class="kbd">G</span>
+          </button>
+          <button class="tool-toggle" id="btn-open-tile-modal" title="Open Seamless 3x2 Tile Inspector (T)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            Tile Preview <span class="kbd">T</span>
+          </button>
+          <button class="btn btn-sm btn-ghost" id="btn-copy-clipboard" title="Copy rendered image to clipboard">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Canvas Viewport Area -->
+      <div class="canvas-viewport" id="viewport-scroll-area">
+        <div class="canvas-container" id="canvas-wrapper">
+          <canvas id="cv" width="1920" height="1080"></canvas>
+          <div id="guide">
+            <i></i>
+            <b></b>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stage Footer / Status Bar -->
+      <div class="stage-footer">
+        <div class="footer-tip">
+          <span>💡 BOOTH Tip:</span> Keep vital text & logos in the centre yellow box — outer edges get cropped on smartphones.
+        </div>
+        <div class="footer-status" id="info">
+          Ready to generate
+        </div>
+      </div>
+    </section>
+
+    <!-- Studio Inspector (Sidebar) -->
+    <aside class="studio-sidebar">
+      <div class="inspector-header">
+        <div class="inspector-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          Inspector Controls
+        </div>
+        <button class="btn btn-sm btn-ghost" id="rstc" title="Reset to default colors">
+          ↺ Reset
+        </button>
+      </div>
+
+      <!-- Section 1: Presets & Canvas -->
+      <div class="panel-section open" id="sec-canvas">
+        <div class="panel-header">
+          <div class="panel-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+            Canvas & Presets
+          </div>
+          <svg class="panel-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="panel-body">
+          <div class="field-group">
+            <label class="field-label" for="preset">Preset Resolution</label>
+            <select id="preset" autocomplete="off">
+              <option value="1920,1080" selected>Background 1920×1080 (Standard HD)</option>
+              <option value="2560,1440">Background 2560×1440 (2K Hi-Res)</option>
+              <option value="1920,480">Header 1920×480</option>
+              <option value="1920,600">Header 1920×600</option>
+              <option value="512,512">Seamless Tile 512×512</option>
+              <option value="1024,1024">Seamless Tile 1024×1024</option>
+              <option value="c">Custom Dimensions</option>
+            </select>
+          </div>
+
+          <div class="input-row">
+            <div class="field-group">
+              <label class="field-label" for="w">Width (px)</label>
+              <input type="number" id="w" value="1920" min="100" max="4000" autocomplete="off">
+            </div>
+            <div class="field-group">
+              <label class="field-label" for="h">Height (px)</label>
+              <input type="number" id="h" value="1080" min="100" max="4000" autocomplete="off">
+            </div>
+          </div>
+
+          <div class="switches-grid">
+            <label class="switch-card">
+              <span class="switch-label">🔄 Seamless Tile</span>
+              <input type="checkbox" id="tl" checked autocomplete="off">
+              <div class="switch-toggle"></div>
+            </label>
+            <label class="switch-card">
+              <span class="switch-label">📱 Safe Guides</span>
+              <input type="checkbox" id="gd" autocomplete="off">
+              <div class="switch-toggle"></div>
+            </label>
+            <label class="switch-card">
+              <span class="switch-label">🌑 Vignette</span>
+              <input type="checkbox" id="vg" checked autocomplete="off">
+              <div class="switch-toggle"></div>
+            </label>
+            <label class="switch-card">
+              <span class="switch-label">💎 Glass Overlay</span>
+              <input type="checkbox" id="ov" autocomplete="off">
+              <div class="switch-toggle"></div>
+            </label>
+          </div>
+
+          <!-- Compatibility hidden input -->
+          <input type="checkbox" id="pv" style="display:none;" autocomplete="off">
+
+          <div class="field-group">
+            <label class="field-label" for="mx">
+              <span>Max File Size (BOOTH limit)</span>
+              <span class="val-badge" id="val-mx">1024 KB</span>
+            </label>
+            <input type="number" id="mx" value="1024" min="100" max="10240" autocomplete="off">
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Shader Style & Colors -->
+      <div class="panel-section open" id="sec-style">
+        <div class="panel-header">
+          <div class="panel-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+            Shader & Color Palette
+          </div>
+          <svg class="panel-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="panel-body">
+          <div class="input-row">
+            <div class="field-group">
+              <label class="field-label" for="style">Background Style</label>
+              <select id="style" autocomplete="off">
+                <option selected>Metalheart</option>
+                <option>Liquid metal</option>
+                <option>Liquid glass</option>
+                <option>Soft blobs</option>
+                <option>Gradient</option>
+                <option>Dots</option>
+                <option>Stripes</option>
+                <option>Checker</option>
+                <option>Stars</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label class="field-label" for="mat">Metal Material</label>
+              <select id="mat" autocomplete="off">
+                <option selected>Tinted</option>
+                <option>Silver</option>
+                <option>Gold</option>
+                <option>Rose</option>
+                <option>Holographic</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Color Swatches & Hex pickers -->
+          <div class="color-swatches-grid">
+            <div class="color-picker-card">
+              <div class="color-card-meta">
+                <span class="color-label-tag">Color 1</span>
+                <span class="color-hex-tag" id="hex-c1">#78b7ff</span>
+              </div>
+              <div class="color-preview-box" id="box-c1" style="background:#78b7ff;">
+                <input type="color" id="c1" value="#78b7ff" autocomplete="off">
+              </div>
+            </div>
+
+            <div class="color-picker-card">
+              <div class="color-card-meta">
+                <span class="color-label-tag">Color 2</span>
+                <span class="color-hex-tag" id="hex-c2">#c285ff</span>
+              </div>
+              <div class="color-preview-box" id="box-c2" style="background:#c285ff;">
+                <input type="color" id="c2" value="#c285ff" autocomplete="off">
+              </div>
+            </div>
+
+            <div class="color-picker-card">
+              <div class="color-card-meta">
+                <span class="color-label-tag">Color 3</span>
+                <span class="color-hex-tag" id="hex-c3">#66ffc2</span>
+              </div>
+              <div class="color-preview-box" id="box-c3" style="background:#66ffc2;">
+                <input type="color" id="c3" value="#66ffc2" autocomplete="off">
+              </div>
+            </div>
+          </div>
+
+          <!-- Palette Presets Selector -->
+          <div class="field-group">
+            <div class="field-label">
+              <span>Color Presets</span>
+              <button class="btn btn-sm btn-ghost" id="rndc" style="padding:2px 6px;">
+                🎨 Random Colors
+              </button>
+            </div>
+            <div class="palettes-row" id="palette-buttons-container"></div>
+            <!-- Hidden original select for script compatibility -->
+            <select id="pal" style="display:none;" autocomplete="off"></select>
+          </div>
+
+          <!-- Sliders: Softness & Grain -->
+          <div class="field-group">
+            <label class="field-label" for="soft">
+              <span>Softness & Flow</span>
+              <span class="val-badge" id="val-soft">60%</span>
+            </label>
+            <input type="range" id="soft" min="0" max="100" value="60" autocomplete="off">
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="grain">
+              <span>Film Grain / Noise</span>
+              <span class="val-badge" id="val-grain">25</span>
+            </label>
+            <input type="range" id="grain" min="0" max="300" value="25" autocomplete="off">
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Typography & Studio Text -->
+      <div class="panel-section open" id="sec-text">
+        <div class="panel-header">
+          <div class="panel-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
+            Typography & Shop Branding
+          </div>
+          <svg class="panel-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="panel-body">
+          <div class="field-group">
+            <label class="field-label" for="txt">Shop Text / Title</label>
+            <input type="text" id="txt" placeholder="Enter shop name (or leave empty for clean background)" autocomplete="off">
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="font">Font Family</label>
+            <select id="font" autocomplete="off">
+              <option selected>Auto</option>
+              <optgroup label="Disruptive / Blobby">
+                <option style="font-family:'Climate Crisis'">Climate Crisis</option>
+                <option style="font-family:'Syne'">Syne</option>
+                <option style="font-family:'Unbounded'">Unbounded</option>
+                <option style="font-family:'Anybody'">Anybody</option>
+                <option style="font-family:'Gasoek One'">Gasoek One</option>
+                <option style="font-family:'Bagel Fat One'">Bagel Fat One</option>
+                <option style="font-family:'Modak'">Modak</option>
+                <option style="font-family:'Chango'">Chango</option>
+                <option style="font-family:'Rubik Wet Paint'">Rubik Wet Paint</option>
+                <option style="font-family:'Rubik Bubbles'">Rubik Bubbles</option>
+                <option style="font-family:'Rubik Glitch'">Rubik Glitch</option>
+                <option style="font-family:'Shrikhand'">Shrikhand</option>
+                <option style="font-family:'Sigmar One'">Sigmar One</option>
+                <option style="font-family:'Foldit'">Foldit</option>
+                <option style="font-family:'Rammetto One'">Rammetto One</option>
+                <option style="font-family:'Titan One'">Titan One</option>
+                <option style="font-family:'Luckiest Guy'">Luckiest Guy</option>
+                <option style="font-family:'Coiny'">Coiny</option>
+                <option style="font-family:'Chewy'">Chewy</option>
+                <option style="font-family:'Paytone One'">Paytone One</option>
+                <option style="font-family:'Passion One'">Passion One</option>
+                <option style="font-family:'Londrina Solid'">Londrina Solid</option>
+                <option style="font-family:'Sniglet'">Sniglet</option>
+                <option style="font-family:'Lemon'">Lemon</option>
+                <option style="font-family:'Nosifer'">Nosifer</option>
+                <option style="font-family:'Rubik Gemstones'">Rubik Gemstones</option>
+              </optgroup>
+              <optgroup label="Y2K / Futuristic / Tech">
+                <option style="font-family:'Orbitron'">Orbitron</option>
+                <option style="font-family:'Audiowide'">Audiowide</option>
+                <option style="font-family:'Zen Dots'">Zen Dots</option>
+                <option style="font-family:'Wallpoet'">Wallpoet</option>
+                <option style="font-family:'Goldman'">Goldman</option>
+                <option style="font-family:'Oxanium'">Oxanium</option>
+                <option style="font-family:'Exo 2'">Exo 2</option>
+                <option style="font-family:'Russo One'">Russo One</option>
+                <option style="font-family:'Bruno Ace'">Bruno Ace</option>
+                <option style="font-family:'Stalinist One'">Stalinist One</option>
+                <option style="font-family:'Black Ops One'">Black Ops One</option>
+                <option style="font-family:'Faster One'">Faster One</option>
+                <option style="font-family:'Michroma'">Michroma</option>
+                <option style="font-family:'Krona One'">Krona One</option>
+                <option style="font-family:'Righteous'">Righteous</option>
+                <option style="font-family:'Tilt Warp'">Tilt Warp</option>
+                <option style="font-family:'Dela Gothic One'">Dela Gothic One</option>
+                <option style="font-family:'Monoton'">Monoton</option>
+                <option style="font-family:'Bungee Shade'">Bungee Shade</option>
+                <option style="font-family:'Bungee Inline'">Bungee Inline</option>
+                <option style="font-family:'Vast Shadow'">Vast Shadow</option>
+                <option style="font-family:'Fascinate Inline'">Fascinate Inline</option>
+                <option style="font-family:'Sixtyfour'">Sixtyfour</option>
+                <option style="font-family:'Silkscreen'">Silkscreen</option>
+                <option style="font-family:'Pixelify Sans'">Pixelify Sans</option>
+              </optgroup>
+              <optgroup label="Gothic / Dark Metal">
+                <option style="font-family:'Pirata One'">Pirata One</option>
+                <option style="font-family:'UnifrakturMaguntia'">UnifrakturMaguntia</option>
+                <option style="font-family:'New Rocker'">New Rocker</option>
+                <option style="font-family:'Grenze Gotisch'">Grenze Gotisch</option>
+                <option style="font-family:'Jacquard 24'">Jacquard 24</option>
+              </optgroup>
+              <optgroup label="Elegant / Fat Serif">
+                <option style="font-family:'Fraunces'">Fraunces</option>
+                <option style="font-family:'Gloock'">Gloock</option>
+                <option style="font-family:'Caprasimo'">Caprasimo</option>
+                <option style="font-family:'Ultra'">Ultra</option>
+                <option style="font-family:'Alfa Slab One'">Alfa Slab One</option>
+                <option style="font-family:'Abril Fatface'">Abril Fatface</option>
+                <option style="font-family:'Rozha One'">Rozha One</option>
+                <option style="font-family:'Limelight'">Limelight</option>
+              </optgroup>
+              <optgroup label="Japanese / Kanji Typography">
+                <option>Zen Maru Gothic</option>
+                <option>Potta One</option>
+                <option>Reggae One</option>
+                <option>Rampart One</option>
+                <option>DotGothic16</option>
+                <option>Yusei Magic</option>
+                <option>RocknRoll One</option>
+                <option>Train One</option>
+              </optgroup>
+            </select>
+          </div>
+
+          <div class="button-grid-2">
+            <button class="btn btn-sm" id="rt">🎲 Randomize Text</button>
+            <button class="btn btn-sm" id="dis">💥 Disruptive Y2K</button>
+          </div>
+
+          <div class="input-row">
+            <div class="field-group">
+              <label class="field-label" for="tstyle">Render Style</label>
+              <select id="tstyle" autocomplete="off">
+                <option selected>Auto</option>
+                <option>Chrome</option>
+                <option>Glass</option>
+                <option>Sticker</option>
+                <option>Neon</option>
+                <option>Outline</option>
+                <option>3D</option>
+                <option>Gradient</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label class="field-label">Alignment</label>
+              <div class="segmented-control" id="align-segmented">
+                <button class="segmented-btn" data-pos="Left">Left</button>
+                <button class="segmented-btn active" data-pos="Center">Center</button>
+                <button class="segmented-btn" data-pos="Right">Right</button>
+              </div>
+              <select id="tpos" style="display:none;" autocomplete="off">
+                <option>Center</option><option>Left</option><option>Right</option>
+              </select>
+            </div>
+          </div>
+
+          <label class="switch-card">
+            <span class="switch-label">🔠 Force UPPERCASE</span>
+            <input type="checkbox" id="tup" autocomplete="off">
+            <div class="switch-toggle"></div>
+          </label>
+
+          <div class="field-group">
+            <label class="field-label" for="tsz">
+              <span>Text Size</span>
+              <span class="val-badge" id="val-tsz">100%</span>
+            </label>
+            <input type="range" id="tsz" min="40" max="160" value="100" autocomplete="off">
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="tls">
+              <span>Letter Spacing</span>
+              <span class="val-badge" id="val-tls">5px</span>
+            </label>
+            <input type="range" id="tls" min="-5" max="40" value="5" autocomplete="off">
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="tgl">
+              <span>Glow & Radiance</span>
+              <span class="val-badge" id="val-tgl">100%</span>
+            </label>
+            <input type="range" id="tgl" min="0" max="200" value="100" autocomplete="off">
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="trot">
+              <span>Perspective Tilt</span>
+              <span class="val-badge" id="val-trot">0°</span>
+            </label>
+            <input type="range" id="trot" min="-15" max="15" value="0" autocomplete="off">
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 4: 3D Extrusion & Liquid FX -->
+      <div class="panel-section" id="sec-fx">
+        <div class="panel-header">
+          <div class="panel-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            Chrome Extrusion & Liquid FX
+          </div>
+          <svg class="panel-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="panel-body">
+          <div class="field-group">
+            <label class="field-label" for="puff">
+              <span>Puffiness (3D Depth)</span>
+              <span class="val-badge" id="val-puff">100%</span>
+            </label>
+            <input type="range" id="puff" min="40" max="220" value="100" autocomplete="off">
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="shine">
+              <span>Shine & Specular</span>
+              <span class="val-badge" id="val-shine">100%</span>
+            </label>
+            <input type="range" id="shine" min="0" max="200" value="100" autocomplete="off">
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="str">
+              <span>Horizontal Stretch</span>
+              <span class="val-badge" id="val-str">100%</span>
+            </label>
+            <input type="range" id="str" min="50" max="220" value="100" autocomplete="off">
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="goo">
+              <span>Liquid Goo (Bleed)</span>
+              <span class="val-badge" id="val-goo">0</span>
+            </label>
+            <input type="range" id="goo" min="0" max="100" value="0" autocomplete="off">
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="wave">
+              <span>Sine Wave Distortion</span>
+              <span class="val-badge" id="val-wave">0</span>
+            </label>
+            <input type="range" id="wave" min="0" max="100" value="0" autocomplete="off">
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="split">
+              <span>RGB Chromatic Split</span>
+              <span class="val-badge" id="val-split">0</span>
+            </label>
+            <input type="range" id="split" min="0" max="100" value="0" autocomplete="off">
+          </div>
+        </div>
+      </div>
+    </aside>
+
+  </main>
+
+  <!-- Seamless Tile Inspection Modal -->
+  <div class="modal-overlay" id="tile-modal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <div class="modal-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Seamless 3×2 Repeat Inspector
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <button class="btn btn-sm" id="btn-toggle-mockup">Toggle BOOTH Mockup</button>
+          <button class="btn btn-sm btn-ghost" id="btn-close-modal">✕ Close</button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 12px; color: var(--text-muted);">
+          Inspect how your pattern tiles seamlessly across BOOTH shop backgrounds. Turn on "Seamless Tile" in the inspector to verify edge alignment.
+        </p>
+        <div class="tile-preview-stage" id="tp-modal-stage">
+          <div class="tile-mockup-overlay" id="tile-mockup" style="display: none;">
+            <div class="mock-shop-card">
+              <div class="mock-avatar">💖</div>
+              <h3 style="font-size: 18px; margin-bottom: 6px; font-weight: 800;">YOUR SHOP NAME</h3>
+              <p style="font-size: 12px; color: #a0aec0; margin-bottom: 14px;">3D Avatars, VRChat Assets & Y2K Aesthetics</p>
+              <div style="display: flex; gap: 8px; justify-content: center;">
+                <span class="brand-badge">★ 5.0 Rating</span>
+                <span class="brand-badge">BOOTH Verified</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Hidden compatibility element for legacy tile preview -->
+  <div id="tp" style="display:none;"></div>
+
+  <script>
+    // Studio DOM Elements & Helpers
+    const $ = id => document.getElementById(id);
+    const cv = $('cv');
+    const ctx = cv.getContext('2d');
+    let TL = false, seed = 1;
+    const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+
+    function showToast(msg, duration = 3000) {
+      const container = $('toast-container');
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      toast.innerHTML = msg;
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.classList.add('hide');
+        setTimeout(() => toast.remove(), 250);
+      }, duration);
+    }
+
+    // Mathematical wrap & offset helper for seamless tiling
+    function wrap(W, H, f) {
+      if (!TL) { f(); return; }
+      const s0 = seed;
+      let e = s0;
+      for (const oy of [-1, 0, 1]) {
+        for (const ox of [-1, 0, 1]) {
+          seed = s0;
+          ctx.save();
+          ctx.translate(ox * W, oy * H);
+          f();
+          ctx.restore();
+          e = seed;
+        }
+      }
+      seed = e;
+    }
+
+    function offs(W, H, f) {
+      for (const oy of TL ? [-H, 0, H] : [0]) {
+        for (const ox of TL ? [-W, 0, W] : [0]) {
+          f(ox, oy);
+        }
+      }
+    }
+
+    function hx(c) {
+      return [1, 3, 5].map(i => parseInt(c.substr(i, 2), 16));
+    }
+
+    function mix(a, b, t) {
+      return [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t];
+    }
+
+    function depthcore(W, H, u, s, cs) {
+      metal(W, H, s, false);
+      const cx = W * (.3 + rnd() * .4), cy = H * (.38 + rnd() * .24), R = Math.max(W, H);
+      let g = ctx.createRadialGradient(cx, cy, u * .04, cx, cy, R * .7);
+      g.addColorStop(0, 'rgba(0,0,0,0)');
+      g.addColorStop(.4, 'rgba(2,4,10,.6)');
+      g.addColorStop(1, 'rgba(2,4,10,.97)');
+      ctx.fillStyle = TL ? 'rgba(2,4,10,.55)' : g;
+      ctx.fillRect(0, 0, W, H);
+      ctx.save();
+      ctx.globalCompositeOperation = 'screen';
+      [[cx, cy, cs[1], .35, .55], [cx + (rnd() - .5) * W * .5, cy + (rnd() - .5) * H * .5, cs[2], .28, .4]].forEach(a => {
+        wrap(W, H, () => {
+          g = ctx.createRadialGradient(a[0], a[1], 0, a[0], a[1], R * a[4]);
+          g.addColorStop(0, a[2] + Math.round(a[3] * 255).toString(16).padStart(2, '0'));
+          g.addColorStop(1, a[2] + '00');
+          ctx.fillStyle = g;
+          ctx.fillRect(a[0] - R * a[4], a[1] - R * a[4], 2 * R * a[4], 2 * R * a[4]);
+        });
+      });
+      const hy = H * .58, lw = Math.max(1, u * .0014);
+      ctx.lineWidth = lw;
+      ctx.strokeStyle = cs[1] + '3a';
+      if (TL) {
+        for (let i = 0; i < 14; i++) {
+          const y = H * i / 14;
+          ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+        }
+        for (let i = 0; i < 24; i++) {
+          const x = W * i / 24;
+          ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+        }
+      } else {
+        for (let i = 1; i <= 14; i++) {
+          const y = hy + (H - hy) * Math.pow(i / 14, 2.2);
+          ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+        }
+        for (let i = -16; i <= 16; i++) {
+          ctx.beginPath();
+          ctx.moveTo(W / 2 + i * W * .012, hy);
+          ctx.lineTo(W / 2 + i * W * .14, H);
+          ctx.stroke();
+        }
+      }
+      ctx.setLineDash([u * .012, u * .02]);
+      ctx.strokeStyle = 'rgba(255,255,255,.35)';
+      wrap(W, H, () => {
+        ctx.beginPath(); ctx.arc(cx, cy, u * .42, 0, 7); ctx.stroke();
+      });
+      ctx.setLineDash([]);
+      ctx.strokeStyle = 'rgba(255,255,255,.5)';
+      wrap(W, H, () => {
+        for (let i = 0; i < 14; i++) {
+          const x = rnd() * W, y = rnd() * H, z = u * .012;
+          ctx.beginPath(); ctx.moveTo(x - z, y); ctx.lineTo(x + z, y);
+          ctx.moveTo(x, y - z); ctx.lineTo(x, y + z); ctx.stroke();
+        }
+      });
+      wrap(W, H, () => {
+        for (let i = 0; i < 34; i++) {
+          const x = rnd() * W, y = rnd() * H, r = u * (.006 + Math.pow(rnd(), 2.5) * .09), c = cs[i % 3];
+          g = ctx.createRadialGradient(x, y, r * .6, x, y, r);
+          g.addColorStop(0, c + '10');
+          g.addColorStop(.9, c + '40');
+          g.addColorStop(1, c + '00');
+          ctx.fillStyle = g;
+          ctx.beginPath(); ctx.arc(x, y, r, 0, 7); ctx.fill();
+        }
+      });
+      g = ctx.createLinearGradient(0, 0, W, 0);
+      g.addColorStop(0, 'rgba(255,255,255,0)');
+      g.addColorStop(.5, 'rgba(255,255,255,.85)');
+      g.addColorStop(1, 'rgba(255,255,255,0)');
+      ctx.fillStyle = TL ? 'rgba(255,255,255,.4)' : g;
+      ctx.fillRect(0, cy - lw, W, lw * 2);
+      ctx.globalAlpha = .25;
+      ctx.fillRect(0, cy - u * .01, W, u * .02);
+      ctx.restore();
+    }
+
+    const LF = {}, FWT = {
+      Syne: 800, Unbounded: 800, Anybody: 800, Foldit: 800, Orbitron: 800,
+      Fraunces: 800, Sniglet: 800, Oxanium: 800, 'Exo 2': 800, 'Grenze Gotisch': 800,
+      'Londrina Solid': 900, Goldman: 700, 'Passion One': 700, Silkscreen: 700, 'Pixelify Sans': 700
+    };
+    const DF = ['Climate Crisis', 'Syne', 'Unbounded', 'Anybody', 'Gasoek One', 'Bagel Fat One', 'Modak', 'Chango', 'Rubik Wet Paint', 'Rubik Bubbles', 'Rubik Glitch', 'Shrikhand', 'Sigmar One', 'Foldit', 'Rammetto One', 'Titan One', 'Luckiest Guy', 'Coiny', 'Chewy', 'Paytone One', 'Passion One', 'Londrina Solid', 'Sniglet', 'Lemon', 'Nosifer', 'Rubik Gemstones'];
+
+    function drawText(W, H, u, st, cs) {
+      let txt = $('txt').value.trim();
+      if (!txt) return;
+      if ($('tup').checked) txt = txt.toUpperCase();
+      const AU = {
+        'Metalheart': 'Orbitron', 'Liquid metal': 'Unbounded', 'Liquid glass': 'Syne',
+        'Stripes': 'Gasoek One', 'Checker': 'Gasoek One', 'Stars': 'Bagel Fat One', 'Dots': 'Bagel Fat One'
+      };
+      const fam = $('font').value == 'Auto' ? (AU[st] || 'Climate Crisis') : $('font').value;
+      const fw = FWT[fam] || 400;
+      const stack = `"${fam}","Zen Maru Gothic","Noto Sans JP",sans-serif`;
+      if (!LF[fam]) {
+        LF[fam] = 1;
+        if (document.fonts) document.fonts.load(`${fw} 40px "${fam}"`, txt).then(() => sched()).catch(() => {});
+      }
+      const goo = +$('goo').value, wv = +$('wave').value, sp = +$('split').value;
+      const fx = goo || wv || sp;
+      const baseCtx = ctx;
+      let L = null;
+      if (fx) {
+        L = document.createElement('canvas');
+        L.width = W;
+        L.height = H;
+        ctx = L.getContext('2d');
+      }
+      ctx.save();
+      ctx.textBaseline = 'middle';
+      ctx.lineJoin = 'round';
+      let size = H * .44 * $('tsz').value / 100;
+      const setF = () => {
+        ctx.font = `${fw} ${size}px ${stack}`;
+        if ('letterSpacing' in ctx) ctx.letterSpacing = (size * $('tls').value / 100) + 'px';
+      };
+      setF();
+      let w = ctx.measureText(txt).width;
+      const sx = $('str').value / 100;
+      if (w * sx > W * .86) {
+        size *= W * .86 / (w * sx);
+        setF();
+        w = ctx.measureText(txt).width;
+      }
+      const pos = $('tpos').value;
+      const ax = pos == 'Left' ? W * .07 : pos == 'Right' ? W * .93 : W / 2;
+      const gl = $('tgl').value / 100;
+      ctx.textAlign = pos.toLowerCase();
+      ctx.translate(ax, H / 2);
+      ctx.rotate($('trot').value * Math.PI / 180);
+      ctx.scale(sx, 1);
+      let ts = $('tstyle').value;
+      if (ts == 'Auto') ts = (st == 'Metalheart' || st == 'Liquid metal') ? 'Chrome' : st == 'Liquid glass' ? 'Glass' : 'Sticker';
+      const rgb = a => `rgb(${a.map(Math.round)})`;
+      const wt = [255, 255, 255];
+      const c1 = hx(cs[0]), c2 = hx(cs[1]), c3 = hx(cs[2]);
+      const T = () => ctx.fillText(txt, 0, 0);
+      const S = () => ctx.strokeText(txt, 0, 0);
+      const vg = a => {
+        const g = ctx.createLinearGradient(0, -size * .5, 0, size * .5);
+        a.forEach((c, i) => g.addColorStop(i / (a.length - 1), c));
+        return g;
+      };
+      const x0 = pos == 'Left' ? 0 : pos == 'Right' ? -w : -w / 2;
+      const hg = () => {
+        const g = ctx.createLinearGradient(x0, 0, x0 + w, 0);
+        [cs[2], cs[0], cs[1]].forEach((c, i) => g.addColorStop(i / 2, c));
+        return g;
+      };
+
+      if (ts == 'Chrome') {
+        const m = ctx.getTransform();
+        const mk = document.createElement('canvas');
+        mk.width = W; mk.height = H;
+        const mc = mk.getContext('2d');
+        mc.font = ctx.font;
+        mc.textAlign = ctx.textAlign;
+        mc.textBaseline = 'middle';
+        if ('letterSpacing' in ctx) mc.letterSpacing = ctx.letterSpacing;
+        mc.setTransform(m.a, m.b, m.c, m.d, m.e, m.f);
+        mc.fillStyle = '#000';
+        mc.fillText(txt, 0, 0);
+
+        const blur = r => {
+          const k = Math.max(1.5, r);
+          const s = document.createElement('canvas');
+          s.width = Math.max(2, Math.ceil(W / k));
+          s.height = Math.max(2, Math.ceil(H / k));
+          const a = s.getContext('2d');
+          a.imageSmoothingQuality = 'high';
+          a.drawImage(mk, 0, 0, s.width, s.height);
+          const o = document.createElement('canvas');
+          o.width = W; o.height = H;
+          const b = o.getContext('2d');
+          b.imageSmoothingQuality = 'high';
+          b.drawImage(s, 0, 0, W, H);
+          const d = b.getImageData(0, 0, W, H).data;
+          const r8 = new Uint8Array(W * H);
+          for (let i = 0; i < W * H; i++) r8[i] = d[i * 4 + 3];
+          return r8;
+        };
+
+        const pf = $('puff').value / 100, sh = $('shine').value / 100;
+        const a0 = mc.getImageData(0, 0, W, H).data;
+        const A1 = blur(size * .05 * pf), A2 = blur(size * .11 * pf), A3 = blur(size * .22 * pf);
+        const hh = new Float32Array(W * H);
+        for (let i = 0; i < W * H; i++) hh[i] = (A1[i] * .3 + A2[i] * .4 + A3[i] * .3) / 255;
+
+        const bb = (r) => {
+          r = Math.max(1, Math.round(r));
+          const tmp = new Float32Array(W * H);
+          for (let y = 0; y < H; y++) {
+            let s = 0, o = y * W;
+            for (let x = -r; x <= r; x++) s += hh[o + Math.min(W - 1, Math.max(0, x))];
+            for (let x = 0; x < W; x++) {
+              tmp[o + x] = s / (2 * r + 1);
+              s += hh[o + Math.min(W - 1, x + r + 1)] - hh[o + Math.max(0, x - r)];
+            }
+          }
+          for (let x = 0; x < W; x++) {
+            let s = 0;
+            for (let y = -r; y <= r; y++) s += tmp[Math.min(H - 1, Math.max(0, y)) * W + x];
+            for (let y = 0; y < H; y++) {
+              hh[y * W + x] = s / (2 * r + 1);
+              s += tmp[Math.min(H - 1, y + r + 1) * W + x] - tmp[Math.max(0, y - r) * W + x];
+            }
+          }
+        };
+        bb(size * .02);
+        bb(size * .02);
+        const g2 = Math.max(1, Math.round(size * .015));
+        const mt = $('mat').value;
+        const SP = {
+          Silver: ['#262a36', '#7d8599', '#ffffff', '#08090f', '#59627c', '#dfe6f5', '#ffffff'],
+          Gold: ['#3a2204', '#b5781c', '#fff2b0', '#160b01', '#c88a22', '#ffe9a0', '#ffffff'],
+          Rose: ['#3a1a20', '#c9827c', '#fff0ee', '#160a0d', '#b87379', '#ffd9d4', '#ffffff'],
+          Tinted: [rgb(c2.map(v => v * .3)), cs[1], '#ffffff', rgb(c1.map(v => v * .1)), cs[0], rgb(mix(c3, wt, .45)), '#ffffff']
+        };
+        const stops = (SP[mt] || SP.Tinted).map(c => {
+          if (c[0] == '#') return [1, 3, 5].map(i => parseInt(c.substr(i, 2), 16));
+          return c.match(/\d+/g).slice(0, 3).map(Number);
+        }), posStops = [0, .2, .4, .52, .66, .84, 1];
+        const out = document.createElement('canvas');
+        out.width = W; out.height = H;
+        const oc = out.getContext('2d'), im = oc.createImageData(W, H), d = im.data;
+        const K = size * .16, Lg = [-.4, -.6, .7];
+        for (let y = g2; y < H - g2; y++) {
+          for (let x = g2; x < W - g2; x++) {
+            const i = y * W + x, al = a0[i * 4 + 3];
+            if (al < 2) continue;
+            let nx = -(hh[i + g2] - hh[i - g2]) * K / (2 * g2);
+            let ny = -(hh[i + g2 * W] - hh[i - g2 * W]) * K / (2 * g2);
+            const nz = 1, l = Math.hypot(nx, ny, nz);
+            nx /= l; ny /= l; const nzn = nz / l;
+            let v = .5 - .5 * Math.max(-1, Math.min(1, ny * 1.7 + nx * .3 + ((x / W) - .5) * .3));
+            let c;
+            if (mt == 'Holographic') {
+              c = hsl((v * 420 + nx * 80 + 300) % 360, .8, .35 + .4 * Math.abs(Math.sin(v * 9)));
+            } else {
+              let j = 0;
+              while (j < 5 && v > posStops[j + 1]) j++;
+              const k = Math.max(0, Math.min(1, (v - posStops[j]) / (posStops[j + 1] - posStops[j]))), s = k * k * (3 - 2 * k);
+              c = mix(stops[j], stops[j + 1], s);
+            }
+            c = mix(c, [255, 255, 255], Math.min(.6, Math.pow(1 - nzn, 2) * .5 * sh));
+            const sp = Math.pow(Math.max(0, nx * Lg[0] + ny * Lg[1] + nzn * Lg[2]), 36) * 210 * sh, o = i * 4;
+            d[o] = Math.min(255, c[0] + sp);
+            d[o + 1] = Math.min(255, c[1] + sp);
+            d[o + 2] = Math.min(255, c[2] + sp);
+            d[o + 3] = al;
+          }
+        }
+        oc.putImageData(im, 0, 0);
+        ctx.save();
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.shadowColor = 'rgba(0,0,25,.6)';
+        ctx.shadowBlur = size * .16;
+        ctx.shadowOffsetY = size * .05;
+        ctx.drawImage(mk, 0, 0);
+        ctx.shadowColor = cs[1];
+        ctx.shadowBlur = size * .4 * gl;
+        ctx.shadowOffsetY = 0;
+        ctx.drawImage(mk, 0, 0);
+        ctx.shadowColor = 'transparent';
+        ctx.drawImage(out, 0, 0);
+        ctx.restore();
+      } else if (ts == 'Glass') {
+        const pw = w + size, ph = size * 1.6;
+        const cx = pos == 'Left' ? w / 2 : pos == 'Right' ? -w / 2 : 0;
+        const sm = document.createElement('canvas');
+        sm.width = Math.max(2, W / 20 | 0);
+        sm.height = Math.max(2, H / 20 | 0);
+        sm.getContext('2d').drawImage(cv, 0, 0, sm.width, sm.height);
+        ctx.save();
+        ctx.translate(cx, 0);
+        ctx.shadowColor = 'rgba(0,0,0,.3)';
+        ctx.shadowBlur = size * .3;
+        ctx.shadowOffsetY = size * .1;
+        pth(pw, ph, ph / 2);
+        ctx.fillStyle = 'rgba(255,255,255,.1)';
+        ctx.fill();
+        ctx.shadowColor = 'transparent';
+        ctx.save();
+        pth(pw, ph, ph / 2);
+        ctx.clip();
+        const m = ctx.getTransform();
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.drawImage(sm, 0, 0, W, H);
+        ctx.setTransform(m);
+        let g = ctx.createLinearGradient(-pw / 2, -ph / 2, pw / 2, ph / 2);
+        g.addColorStop(0, 'rgba(255,255,255,.35)');
+        g.addColorStop(.5, 'rgba(255,255,255,.05)');
+        g.addColorStop(1, 'rgba(255,255,255,.22)');
+        ctx.fillStyle = g;
+        ctx.fillRect(-pw / 2, -ph / 2, pw, ph);
+        ctx.restore();
+        g = ctx.createLinearGradient(-pw / 2, -ph / 2, pw / 2, ph / 2);
+        g.addColorStop(0, 'rgba(255,255,255,.95)');
+        g.addColorStop(.4, 'rgba(255,255,255,.1)');
+        g.addColorStop(.6, 'rgba(255,255,255,.1)');
+        g.addColorStop(1, 'rgba(255,255,255,.7)');
+        ctx.lineWidth = Math.max(2, size * .04);
+        ctx.strokeStyle = g;
+        pth(pw, ph, ph / 2);
+        ctx.stroke();
+        ctx.restore();
+        ctx.shadowColor = cs[1];
+        ctx.shadowBlur = size * .25 * gl;
+        ctx.fillStyle = vg(['#fff', rgb(mix(c3, wt, .35)), cs[0]]);
+        T();
+      } else if (ts == 'Sticker') {
+        ctx.shadowColor = 'rgba(0,0,0,.4)';
+        ctx.shadowBlur = size * .15;
+        ctx.shadowOffsetY = size * .07;
+        ctx.strokeStyle = rgb(c1.map(v => v * .3));
+        ctx.lineWidth = size * .17;
+        S();
+        ctx.shadowColor = 'transparent';
+        ctx.fillStyle = vg([rgb(mix(c3, wt, .35)), cs[0], cs[1]]);
+        T();
+      } else if (ts == 'Neon') {
+        ctx.shadowColor = 'rgba(0,0,10,.75)';
+        ctx.shadowBlur = size * .5;
+        ctx.fillStyle = 'rgba(0,0,12,.45)';
+        T(); T();
+        [.6, .3, .12].forEach(k => {
+          ctx.shadowColor = cs[1];
+          ctx.shadowBlur = size * k * gl;
+          ctx.strokeStyle = cs[2];
+          ctx.lineWidth = size * .06;
+          S();
+        });
+        ctx.shadowColor = cs[2];
+        ctx.shadowBlur = size * .08 * gl;
+        ctx.strokeStyle = '#fff';
+        ctx.lineWidth = size * .018;
+        S();
+      } else if (ts == 'Outline') {
+        ctx.shadowColor = cs[1];
+        ctx.shadowOffsetX = size * .05;
+        ctx.shadowOffsetY = size * .05;
+        ctx.strokeStyle = cs[1];
+        ctx.lineWidth = size * .04;
+        S();
+        ctx.shadowColor = 'transparent';
+        ctx.fillStyle = 'rgba(255,255,255,.08)';
+        T();
+        ctx.strokeStyle = hg();
+        ctx.lineWidth = size * .04;
+        S();
+      } else if (ts == '3D') {
+        const d = Math.max(2, Math.round(size * .12));
+        for (let i = d; i >= 1; i--) {
+          if (i == d) {
+            ctx.shadowColor = 'rgba(0,0,0,.4)';
+            ctx.shadowBlur = size * .2 * gl;
+            ctx.shadowOffsetY = size * .05;
+          } else {
+            ctx.shadowColor = 'transparent';
+          }
+          ctx.fillStyle = rgb(mix(c2.map(v => v * .25), c1.map(v => v * .6), 1 - i / d));
+          ctx.fillText(txt, i * .8, i * .8);
+        }
+        ctx.shadowColor = 'transparent';
+        ctx.fillStyle = vg([rgb(mix(c3, wt, .4)), cs[0], cs[1]]);
+        T();
+        ctx.strokeStyle = 'rgba(255,255,255,.5)';
+        ctx.lineWidth = Math.max(1, size * .01);
+        S();
+      } else {
+        ctx.shadowColor = 'transparent';
+        ctx.strokeStyle = 'rgba(12,10,40,.85)';
+        ctx.lineWidth = size * .1;
+        S();
+        ctx.shadowColor = cs[1];
+        ctx.shadowBlur = size * .2 * gl;
+        ctx.fillStyle = hg();
+        T();
+      }
+      ctx.restore();
+
+      if (fx) {
+        ctx = baseCtx;
+        let src = L;
+        if (goo > 0) {
+          const k = Math.max(2, Math.round(size * .045 * goo / 30));
+          const sw = Math.max(2, Math.round(W / k));
+          const sh = Math.max(2, Math.round(H / k));
+          const s1 = document.createElement('canvas');
+          s1.width = sw; s1.height = sh;
+          const a = s1.getContext('2d');
+          a.imageSmoothingQuality = 'high';
+          a.drawImage(L, 0, 0, sw, sh);
+          const s2 = document.createElement('canvas');
+          s2.width = W; s2.height = H;
+          const b = s2.getContext('2d');
+          b.imageSmoothingQuality = 'high';
+          b.drawImage(s1, 0, 0, W, H);
+          const id = b.getImageData(0, 0, W, H), d = id.data;
+          for (let i = 3; i < d.length; i += 4) d[i] = Math.max(0, Math.min(255, (d[i] - 105) * 6));
+          b.putImageData(id, 0, 0);
+          src = s2;
+        }
+        if (wv > 0) {
+          const amp = size * .07 * wv / 50;
+          const fq = 6.283 / (size * 1.1);
+          const tm = document.createElement('canvas');
+          tm.width = W; tm.height = H;
+          const x = tm.getContext('2d');
+          for (let y = 0; y < H; y += 2) {
+            x.drawImage(src, 0, y, W, 2, Math.sin(y * fq + 1.7) * amp + Math.sin(y * fq * 2.3) * amp * .4, y, W, 2);
+          }
+          src = tm;
+        }
+        if (sp > 0) {
+          const dd = size * .04 * sp / 50;
+          const tint = col => {
+            const q = document.createElement('canvas');
+            q.width = W; q.height = H;
+            const x = q.getContext('2d');
+            x.drawImage(src, 0, 0);
+            x.globalCompositeOperation = 'source-in';
+            x.fillStyle = col;
+            x.fillRect(0, 0, W, H);
+            return q;
+          };
+          ctx.save();
+          ctx.globalAlpha = .85;
+          ctx.drawImage(tint(cs[1]), -dd, 0);
+          ctx.drawImage(tint(cs[2]), dd, 0);
+          ctx.restore();
+        }
+        ctx.drawImage(src, 0, 0);
+      }
+    }
+
+    function hsl(h, s, l) {
+      const a = s * Math.min(l, 1 - l);
+      const f = n => {
+        const k = (n + h / 30) % 12;
+        return 255 * (l - a * Math.max(-1, Math.min(k - 3, 9 - k, 1)));
+      };
+      return [f(0), f(8), f(4)];
+    }
+
+    function grain(W, H) {
+      const g = +$('grain').value;
+      if (!g) return;
+      const n = document.createElement('canvas');
+      n.width = n.height = 256;
+      const x = n.getContext('2d'), im = x.createImageData(256, 256);
+      for (let i = 0; i < 65536; i++) {
+        const v = Math.random() * 255;
+        im.data.set([v, v, v, 255], i * 4);
+      }
+      x.putImageData(im, 0, 0);
+      ctx.save();
+      ctx.globalAlpha = g / 700;
+      ctx.globalCompositeOperation = 'overlay';
+      ctx.fillStyle = ctx.createPattern(n, 'repeat');
+      ctx.fillRect(0, 0, W, H);
+      ctx.restore();
+    }
+
+    function metal(W, H, s, hearts) {
+      const sc = Math.min(1, Math.sqrt(1.5e6 / (W * H)));
+      const cw = Math.max(2, W * sc | 0);
+      const ch = Math.max(2, H * sc | 0);
+      const o = document.createElement('canvas');
+      o.width = cw; o.height = ch;
+      const oc = o.getContext('2d'), img = oc.createImageData(cw, ch), d = img.data;
+      const N = 9, P = [], ri = () => Math.round((rnd() - .5) * 3);
+      for (let i = 0; i < N; i++) {
+        P.push({
+          kx: (rnd() - .5) * 7, ky: (rnd() - .5) * 7, ph: rnd() * 6.28,
+          a: .35 + rnd() * .65, w: rnd() * 6.28, fx: ri(), fy: ri(), gx: ri(), gy: ri(), hx: ri() || 1
+        });
+      }
+      const h = new Float32Array(cw * ch), A = cw / ch, HS = [];
+      if (hearts) {
+        HS.push([A / 2 + (rnd() - .5) * .1, .52, .3 + rnd() * .05]);
+        for (let i = 0; i < 4; i++) {
+          const sx = i % 2 ? 1 : -1;
+          HS.push([A / 2 + sx * (.55 + rnd() * .5) * A / 1.8 * (.9 + .3 * rnd()), .15 + rnd() * .7, .07 + rnd() * .1]);
+        }
+      }
+      for (let y = 0; y < ch; y++) {
+        for (let x = 0; x < cw; x++) {
+          const u = x / ch, v = y / ch;
+          let z = 0;
+          for (let i = 0; i < N; i++) {
+            const p = P[i], q = P[(i + 1) % N], r = P[(i + 3) % N];
+            z += TL ? p.a * Math.sin(6.2832 * (p.fx * x / cw + p.fy * y / ch) + p.ph + 1.6 * Math.sin(6.2832 * (q.gx * y / ch + q.gy * x / cw) + q.w) + .6 * Math.sin(6.2832 * r.hx * x / cw + r.w))
+                    : p.a * Math.sin(p.kx * u + p.ky * v + p.ph + 1.6 * Math.sin(q.kx * v * .8 + q.ky * u + q.w) + .6 * Math.sin(r.kx * u * 1.3 + r.w));
+          }
+          if (hearts) {
+            z *= .4;
+            let hh = 0;
+            for (const q of HS) {
+              const X = (u - q[0]) / q[2], Y = -(v - q[1]) / q[2] - .1, a = X * X + Y * Y - 1, F = a * a * a - X * X * Y * Y * Y;
+              if (F < 0) hh = Math.max(hh, Math.pow(-F, .5) * 1.4);
+            }
+            if (hh > 0) z = z * .15 + hh;
+          }
+          h[y * cw + x] = z;
+        }
+      }
+      const c1 = hx($('c1').value), c2 = hx($('c2').value), c3 = hx($('c3').value);
+      const mat = $('mat').value;
+      const hi = mix(c3, [255, 255, 255], .35);
+      const M = {
+        Tinted: [c1.map(v => v * .12), c1, hi, c2, c2.map(v => v * .3), c1.map(v => v * .12)],
+        Silver: [[8, 9, 14], [150, 156, 168], [255, 255, 255], [115, 122, 140], [28, 30, 40], [8, 9, 14]],
+        Gold: [[40, 22, 4], [205, 142, 30], [255, 243, 175], [170, 105, 20], [60, 32, 6], [40, 22, 4]],
+        Rose: [[45, 20, 25], [208, 132, 126], [255, 238, 232], [170, 95, 100], [60, 28, 35], [45, 20, 25]]
+      };
+      const stops = M[mat] || M.Tinted, bands = 2 + (1 - s) * 4, S = .18 + (1 - s) * .25, L = [-.4, -.6, .7];
+      for (let y = 0; y < ch; y++) {
+        for (let x = 0; x < cw; x++) {
+          const xm = TL ? (x - 1 + cw) % cw : Math.max(0, x - 1);
+          const xp = TL ? (x + 1) % cw : Math.min(cw - 1, x + 1);
+          const ym = TL ? (y - 1 + ch) % ch : Math.max(0, y - 1);
+          const yp = TL ? (y + 1) % ch : Math.min(ch - 1, y + 1);
+          const gx = (h[y * cw + xp] - h[y * cw + xm]) * ch / (TL ? 2 : (xp - xm || 1));
+          const gy = (h[yp * cw + x] - h[ym * cw + x]) * ch / (TL ? 2 : (yp - ym || 1));
+          let nx = -gx * S, ny = -gy * S, nz = 1;
+          const l = Math.hypot(nx, ny, nz);
+          nx /= l; ny /= l; nz /= l;
+          let t = (.5 + .5 * (nx * .55 + ny * .85)) * bands;
+          t -= Math.floor(t);
+          let c;
+          if (mat == 'Holographic') {
+            c = hsl((t * 360 + nx * 90 + ny * 60 + 720) % 360, .85, .3 + .35 * (.5 + .5 * Math.cos(t * 12.566)));
+          } else {
+            const f = t * 5, i = Math.min(4, f | 0), k = f - i;
+            c = mix(stops[i], stops[i + 1], k * k * (3 - 2 * k));
+          }
+          const fr = .55 + .45 * nz;
+          const sp = Math.pow(Math.max(0, nx * L[0] + ny * L[1] + nz * L[2]), 40) * 190 + Math.exp(-Math.pow((nx - .25) / .1, 2)) * (ny < 0 ? 45 : 12);
+          const idx = (y * cw + x) * 4;
+          d[idx] = Math.min(255, c[0] * fr + sp);
+          d[idx + 1] = Math.min(255, c[1] * fr + sp);
+          d[idx + 2] = Math.min(255, c[2] * fr + sp);
+          d[idx + 3] = 255;
+        }
+      }
+      oc.putImageData(img, 0, 0);
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'high';
+      ctx.drawImage(o, 0, 0, W, H);
+    }
+
+    function pth(w, h, r, nb) {
+      if (!nb) ctx.beginPath();
+      ctx.moveTo(-w / 2 + r, -h / 2);
+      ctx.arcTo(w / 2, -h / 2, w / 2, h / 2, r);
+      ctx.arcTo(w / 2, h / 2, -w / 2, h / 2, r);
+      ctx.arcTo(-w / 2, h / 2, -w / 2, -h / 2, r);
+      ctx.arcTo(-w / 2, -h / 2, w / 2, -h / 2, r);
+      ctx.closePath();
+    }
+
+    function glass(W, H, u, s) {
+      const sm = document.createElement('canvas');
+      const k = Math.max(6, 28 * (.4 + s));
+      sm.width = Math.max(2, W / k | 0);
+      sm.height = Math.max(2, H / k | 0);
+      const sc = sm.getContext('2d');
+      sc.imageSmoothingQuality = 'high';
+      const fill = (c, w, h) => {
+        c.width = w * (TL ? 3 : 1);
+        c.height = h * (TL ? 3 : 1);
+        const x = c.getContext('2d');
+        x.imageSmoothingQuality = 'high';
+        if (TL) {
+          for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) x.drawImage(cv, i * w, j * h, w, h);
+          }
+        } else {
+          x.drawImage(cv, 0, 0, w, h);
+        }
+      };
+      const dI = im => TL ? ctx.drawImage(im, -W, -H, 3 * W, 3 * H) : ctx.drawImage(im, 0, 0, W, H);
+      const sw = sm.width, sh = sm.height;
+      fill(sm, sw, sh);
+      const s2 = document.createElement('canvas');
+      fill(s2, Math.max(2, W / (k / 3.5) | 0), Math.max(2, H / (k / 3.5) | 0));
+      const n = 5 + (rnd() * 3 | 0);
+      for (let i = 0; i < n; i++) {
+        const kind = rnd(), orb = kind < .3, pill = kind < .7;
+        const w = u * (orb ? .12 + rnd() * .2 : .28 + rnd() * .45);
+        const h = orb ? w : pill ? w * (.35 + rnd() * .25) : w * (.8 + rnd() * .3);
+        const x = W * (.08 + rnd() * .84), y = H * (.08 + rnd() * .84);
+        const rot = (rnd() - .5) * .9;
+        const r = Math.min(w, h) * (orb ? .5 : .4 + rnd() * .1);
+        const rad = Math.hypot(w, h) / 2 + u * .1;
+        for (const oy of TL ? [-H, 0, H] : [0]) {
+          for (const ox of TL ? [-W, 0, W] : [0]) {
+            if (x + ox + rad < 0 || x + ox - rad > W || y + oy + rad < 0 || y + oy - rad > H) continue;
+            ctx.save();
+            ctx.translate(ox, oy);
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.rotate(rot);
+            ctx.shadowColor = 'rgba(0,0,0,.28)';
+            ctx.shadowBlur = u * .05;
+            ctx.shadowOffsetY = u * .02;
+            pth(w, h, r);
+            ctx.fillStyle = 'rgba(255,255,255,.12)';
+            ctx.fill();
+            ctx.shadowColor = 'transparent';
+            ctx.save();
+            pth(w, h, r);
+            ctx.clip();
+            ctx.save();
+            ctx.rotate(-rot);
+            ctx.translate(-x, -y);
+            ctx.translate(x, y);
+            ctx.scale(1.1, 1.1);
+            ctx.translate(-x, -y);
+            ctx.imageSmoothingEnabled = true;
+            dI(sm);
+            ctx.restore();
+            {
+              const ins = Math.min(w, h) * .16;
+              ctx.save();
+              pth(w, h, r);
+              pth(w - ins * 2, h - ins * 2, Math.max(2, r - ins), 1);
+              ctx.clip('evenodd');
+              ctx.rotate(-rot);
+              ctx.translate(-x, -y);
+              ctx.translate(x, y);
+              ctx.scale(1.45, 1.45);
+              ctx.translate(-x, -y);
+              dI(s2);
+              ctx.restore();
+            }
+            let g = ctx.createLinearGradient(-w / 2, -h / 2, w / 2, h / 2);
+            g.addColorStop(0, 'rgba(255,255,255,.26)');
+            g.addColorStop(.5, 'rgba(255,255,255,.02)');
+            g.addColorStop(1, 'rgba(255,255,255,.16)');
+            ctx.fillStyle = g;
+            ctx.fillRect(-w / 2, -h / 2, w, h);
+            ctx.lineWidth = u * .03;
+            ctx.strokeStyle = 'rgba(255,255,255,.22)';
+            pth(w, h, r);
+            ctx.stroke();
+            g = ctx.createRadialGradient(-w * .25, -h * .3, 0, -w * .25, -h * .3, Math.max(w, h) * .45);
+            g.addColorStop(0, 'rgba(255,255,255,.55)');
+            g.addColorStop(1, 'rgba(255,255,255,0)');
+            ctx.fillStyle = g;
+            ctx.fillRect(-w / 2, -h / 2, w, h);
+            ctx.restore();
+            g = ctx.createLinearGradient(-w / 2, -h / 2, w / 2, h / 2);
+            g.addColorStop(0, 'rgba(255,255,255,.95)');
+            g.addColorStop(.35, 'rgba(255,255,255,.1)');
+            g.addColorStop(.65, 'rgba(255,255,255,.1)');
+            g.addColorStop(1, 'rgba(255,255,255,.7)');
+            ctx.lineWidth = Math.max(2, u * .004);
+            ctx.strokeStyle = g;
+            pth(w, h, r);
+            ctx.stroke();
+            ctx.restore();
+            ctx.restore();
+          }
+        }
+      }
+    }
+
+    function draw() {
+      const W = Math.max(100, Math.min(4000, +$('w').value || 1920));
+      const H = Math.max(100, Math.min(4000, +$('h').value || 1080));
+      cv.width = W; cv.height = H;
+      const cs = [$('c1').value, $('c2').value, $('c3').value];
+      const st = $('style').value;
+      const s = $('soft').value / 100;
+      let r = seed; seed = seed || 1;
+      TL = $('tl').checked;
+      const g = ctx.createLinearGradient(0, 0, W, H);
+      g.addColorStop(0, cs[1]);
+      g.addColorStop(1, cs[2]);
+      ctx.fillStyle = TL ? cs[1] : g;
+      ctx.fillRect(0, 0, W, H);
+      const u = Math.min(W, H);
+
+      if (st == 'Metalheart') depthcore(W, H, u, s, cs);
+      else if (st == 'Liquid metal') metal(W, H, s, false);
+      else if (st == 'Soft blobs' || st == 'Liquid glass') {
+        const G = st == 'Liquid glass';
+        if (G) {
+          const b = hx(cs[0]), b2 = hx(cs[1]);
+          const gg = ctx.createLinearGradient(0, 0, W, H);
+          gg.addColorStop(0, `rgb(${b.map(v => v * .35 | 0)})`);
+          gg.addColorStop(1, `rgb(${b2.map(v => v * .45 | 0)})`);
+          ctx.fillStyle = TL ? `rgb(${b.map(v => v * .4 | 0)})` : gg;
+          ctx.fillRect(0, 0, W, H);
+        }
+        for (let i = 0; i < (G ? 7 : 9); i++) {
+          const x = rnd() * W, y = rnd() * H;
+          const rad = u * (G ? .3 + rnd() * .45 : .25 + rnd() * .5);
+          const c = ctx.createRadialGradient(x, y, 0, x, y, rad);
+          c.addColorStop(0, cs[i % 3] + (G || s <= .5 ? 'ff' : 'cc'));
+          c.addColorStop(1, cs[i % 3] + '00');
+          offs(W, H, (ox, oy) => {
+            ctx.save();
+            ctx.translate(ox, oy);
+            ctx.fillStyle = c;
+            ctx.fillRect(x - rad, y - rad, 2 * rad, 2 * rad);
+            ctx.restore();
+          });
+        }
+      } else if (st == 'Gradient' && TL) {
+        for (let i = 0; i < 3; i++) {
+          const x = rnd() * W, y = rnd() * H, rad = u * (.9 + rnd() * .5);
+          const c = ctx.createRadialGradient(x, y, 0, x, y, rad);
+          c.addColorStop(0, cs[i] + 'ff');
+          c.addColorStop(1, cs[i] + '00');
+          offs(W, H, (ox, oy) => {
+            ctx.save();
+            ctx.translate(ox, oy);
+            ctx.fillStyle = c;
+            ctx.fillRect(x - rad, y - rad, 2 * rad, 2 * rad);
+            ctx.restore();
+          });
+        }
+      } else if (st == 'Gradient') {
+        const a = rnd() * Math.PI * 2;
+        const gg = ctx.createLinearGradient(
+          W / 2 - Math.cos(a) * W / 2, H / 2 - Math.sin(a) * H / 2,
+          W / 2 + Math.cos(a) * W / 2, H / 2 + Math.sin(a) * H / 2
+        );
+        gg.addColorStop(0, cs[0]);
+        gg.addColorStop(.5, cs[1]);
+        gg.addColorStop(1, cs[2]);
+        ctx.fillStyle = gg;
+        ctx.fillRect(0, 0, W, H);
+      } else if (st == 'Dots') {
+        const d = u * (.04 + .08 * (1 - s));
+        const nx = Math.max(2, Math.round(W / d));
+        const ny = 2 * Math.max(1, Math.round(H / d / 2));
+        const dx = TL ? W / nx : d, dy = TL ? H / ny : d;
+        ctx.fillStyle = cs[0] + '55';
+        for (let y = 0, j = 0; y < H + dy; y += dy, j++) {
+          for (let x = (j % 2) * dx / 2; x < W + dx; x += dx) {
+            ctx.beginPath(); ctx.arc(x, y, d * .22, 0, 7); ctx.fill();
+          }
+        }
+      } else if (st == 'Stripes' && TL) {
+        const a = Math.round(4 + (1 - s) * 10), b = 1 + (rnd() * 3 | 0);
+        ctx.fillStyle = cs[0] + '44';
+        for (let m = 0; m <= a + b; m++) {
+          ctx.beginPath();
+          ctx.moveTo(m * W / a, 0);
+          ctx.lineTo((m + .5) * W / a, 0);
+          ctx.lineTo((m + .5 - b) * W / a, H);
+          ctx.lineTo((m - b) * W / a, H);
+          ctx.fill();
+        }
+      } else if (st == 'Stripes') {
+        const d = u * (.05 + .1 * (1 - s));
+        ctx.save();
+        ctx.rotate(-.35);
+        ctx.fillStyle = cs[0] + '44';
+        for (let x = -W; x < W * 2; x += d * 2) ctx.fillRect(x, -H, d, H * 3);
+        ctx.restore();
+      } else if (st == 'Checker' && TL) {
+        const d0 = u * (.06 + .1 * (1 - s));
+        const nx = 2 * Math.max(1, Math.round(W / d0 / 2)), ny = 2 * Math.max(1, Math.round(H / d0 / 2));
+        const X = i => Math.round(i * W / nx), Y = j => Math.round(j * H / ny);
+        ctx.fillStyle = cs[0] + '44';
+        for (let j = 0; j < ny; j++) {
+          for (let i = 0; i < nx; i++) {
+            if ((i + j) % 2) ctx.fillRect(X(i), Y(j), X(i + 1) - X(i), Y(j + 1) - Y(j));
+          }
+        }
+      } else if (st == 'Checker') {
+        const d = u * (.06 + .1 * (1 - s));
+        ctx.fillStyle = cs[0] + '44';
+        for (let y = 0; y < H; y += d) {
+          for (let x = 0; x < W; x += d) {
+            if (((x / d | 0) + (y / d | 0)) % 2) ctx.fillRect(x, y, d, d);
+          }
+        }
+      } else if (st == 'Stars') {
+        ctx.fillStyle = cs[0] + 'bb';
+        wrap(W, H, () => {
+          for (let i = 0; i < 60 + s * 80; i++) {
+            const x = rnd() * W, y = rnd() * H, z = u * (.01 + rnd() * .025);
+            ctx.beginPath();
+            for (let k = 0; k < 10; k++) {
+              const q = k % 2 ? z * .4 : z, a = k * Math.PI / 5 - Math.PI / 2;
+              ctx.lineTo(x + Math.cos(a) * q, y + Math.sin(a) * q);
+            }
+            ctx.fill();
+          }
+        });
+      }
+
+      if (st == 'Liquid glass' || $('ov').checked) glass(W, H, u, s);
+
+      if ($('vg').checked && !TL) {
+        const v = ctx.createRadialGradient(W / 2, H / 2, u * .3, W / 2, H / 2, Math.max(W, H) * .75);
+        v.addColorStop(0, '#fff0');
+        v.addColorStop(1, '#00000022');
+        ctx.fillStyle = v;
+        ctx.fillRect(0, 0, W, H);
+      }
+
+      drawText(W, H, u, st, cs);
+      grain(W, H);
+      updateStatusSpecs();
+    }
+
+    function updateStatusSpecs() {
+      const W = cv.width, H = cv.height;
+      $('res-indicator').textContent = `${W} × ${H}`;
+      const gcd = (a, b) => b ? gcd(b, a % b) : a;
+      const g = gcd(W, H);
+      const aspect = (W / g <= 32 && H / g <= 32) ? `${W / g}:${H / g}` : (W / H).toFixed(2) + ':1';
+      $('aspect-indicator').textContent = aspect;
+    }
+
+    function go(newSeed) {
+      guides();
+      if (newSeed) seed = Math.floor(Math.random() * 1e6) + 1;
+      const s0 = seed;
+      draw();
+      seed = s0;
+      prev();
+    }
+
+    function prev() {
+      const url = cv.toDataURL('image/jpeg', .75);
+      const d = $('tp');
+      d.style.aspectRatio = `${cv.width * 3}/${cv.height * 2}`;
+      d.style.background = `url(${url}) 0 0/33.333% 50%`;
+      const stage = $('tp-modal-stage');
+      if (stage) {
+        stage.style.backgroundImage = `url(${url})`;
+      }
+    }
+
+    const DEF = ['#78b7ff', '#c285ff', '#66ffc2'];
+    function myColors() {
+      ['c1', 'c2', 'c3'].forEach((k, i) => {
+        $(k).value = DEF[i];
+        syncColorUI(k, DEF[i]);
+      });
+      $('pal').value = '0';
+      updatePaletteActivePill(0);
+    }
+
+    function syncColorUI(id, val) {
+      $(`hex-${id}`).textContent = val.toLowerCase();
+      $(`box-${id}`).style.background = val;
+    }
+
+    $('rstc').onclick = () => {
+      myColors();
+      go(false);
+      showToast('↺ Colors reset to default');
+    };
+
+    $('rnd').onclick = () => {
+      go(true);
+      showToast('🎲 Generated new variation');
+    };
+
+    $('rndc').onclick = () => {
+      const hue = Math.random() * 360;
+      const c = (a, l) => {
+        const ctx2 = document.createElement('canvas').getContext('2d');
+        ctx2.fillStyle = `hsl(${hue + a},70%,${l}%)`;
+        return ctx2.fillStyle;
+      };
+      const rgbToHex = rgbStr => {
+        const rgb = rgbStr.match(/\d+/g).map(Number);
+        return '#' + rgb.map(x => x.toString(16).padStart(2, '0')).join('');
+      };
+      const col1 = rgbToHex(c(0, 60)), col2 = rgbToHex(c(40, 85)), col3 = rgbToHex(c(-40, 92));
+      $('c1').value = col1; syncColorUI('c1', col1);
+      $('c2').value = col2; syncColorUI('c2', col2);
+      $('c3').value = col3; syncColorUI('c3', col3);
+      go(true);
+      showToast('🎨 Randomized color palette');
+    };
+
+    const BGO = '<option value="1920,1080" selected>Background 1920×1080 (Standard HD)</option><option value="2560,1440">Background 2560×1440 (2K Hi-Res)</option><option value="1920,480">Header 1920×480</option><option value="1920,600">Header 1920×600</option><option value="512,512">Seamless Tile 512×512</option><option value="1024,1024">Seamless Tile 1024×1024</option><option value="c">Custom Dimensions</option>';
+    const HDO = '<option value="1500,500" selected>Header 1500×500 (recommended)</option><option value="960,300">Header 960×300 (compact)</option><option value="960,400">Header 960×400</option><option value="1500,600">Header 1500×600</option><option value="2000,667">Header 2000×667 (hi-res)</option><option value="c">Custom Dimensions</option>';
+
+    function setMode(mode) {
+      const hd = mode == 'Header';
+      $('mode').value = mode;
+      $('btn-mode-bg').classList.toggle('active', !hd);
+      $('btn-mode-hd').classList.toggle('active', hd);
+      $('preset').innerHTML = hd ? HDO : BGO;
+      $('tl').checked = !hd;
+      $('w').value = hd ? 1500 : 1920;
+      $('h').value = hd ? 500 : 1080;
+      go(false);
+      showToast(`Switched mode: ${mode}`);
+    }
+
+    $('btn-mode-bg').onclick = () => setMode('Background');
+    $('btn-mode-hd').onclick = () => setMode('Header');
+    $('mode').onchange = () => setMode($('mode').value);
+
+    $('rt').onclick = () => {
+      const pk = a => a[Math.random() * a.length | 0];
+      const r = (a, b) => Math.round(a + Math.random() * (b - a));
+      const o = Math.random;
+      const fs = [...$('font').querySelectorAll('optgroup:not([label^="Japanese"]) option')].map(e => e.value);
+      if (!$('txt').value.trim()) $('txt').value = 'MY SHOP';
+      $('font').value = pk(fs);
+      $('tstyle').value = pk(['Chrome', 'Chrome', 'Chrome', 'Glass', 'Sticker', 'Neon', 'Outline', '3D', 'Gradient']);
+      $('tsz').value = r(90, 125);
+      $('str').value = r(85, 150);
+      $('tls').value = r(0, 14);
+      $('trot').value = o() < .5 ? 0 : r(-8, 8);
+      $('puff').value = r(80, 160);
+      $('shine').value = r(85, 150);
+      $('tgl').value = r(70, 140);
+      $('goo').value = o() < .5 ? 0 : r(15, 40);
+      $('wave').value = o() < .5 ? 0 : r(10, 40);
+      $('split').value = o() < .6 ? 0 : r(10, 35);
+      updateAllBadges();
+      go(false);
+      showToast('🎲 Randomized typography style');
+    };
+
+    $('dis').onclick = () => {
+      $('font').value = DF[Math.random() * DF.length | 0];
+      $('tstyle').value = ['Gradient', 'Chrome', 'Sticker', '3D'][Math.random() * 4 | 0];
+      $('goo').value = 35;
+      $('wave').value = 30;
+      $('split').value = 25;
+      if (!$('txt').value.trim()) $('txt').value = 'MY SHOP';
+      updateAllBadges();
+      go(false);
+      showToast('💥 Disruptive Y2K glitch applied');
+    };
+
+    let T;
+    const sched = () => {
+      clearTimeout(T);
+      T = setTimeout(() => go(false), 50);
+    };
+
+    const PALS = [
+      ['My colors', '#78b7ff', '#c285ff', '#66ffc2'],
+      ['Sunset', '#fc4d50', '#ffd6a5', '#fdffb6'],
+      ['Ocean', '#0077b6', '#90e0ef', '#caf0f8'],
+      ['Aurora', '#7b2ff7', '#00e5ff', '#b5ffe1'],
+      ['Candy', '#ff5ea8', '#ffc2e2', '#c9b6ff'],
+      ['Mint', '#2ec4b6', '#cbf3f0', '#fff3b0'],
+      ['Depthcore', '#1f6feb', '#00e5ff', '#ffb86b'],
+      ['Midnight', '#1a1a40', '#5f5aa2', '#a0c4ff'],
+      ['Noir', '#2b2b2b', '#8d99ae', '#edf2f4'],
+      ['Gold', '#d4a017', '#fff1b8', '#ffe08a']
+    ];
+
+    $('pal').innerHTML = PALS.map((p, i) => `<option value="${i}">${p[0]}</option>`).join('');
+    
+    // Render clickable palette pills
+    const paletteContainer = $('palette-buttons-container');
+    PALS.forEach((p, i) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'palette-pill' + (i === 0 ? ' active' : '');
+      btn.innerHTML = `
+        <span class="palette-dots">
+          <span class="palette-dot" style="background:${p[1]}"></span>
+          <span class="palette-dot" style="background:${p[2]}"></span>
+          <span class="palette-dot" style="background:${p[3]}"></span>
+        </span>
+        ${p[0]}
+      `;
+      btn.onclick = () => {
+        $('pal').value = i;
+        $('c1').value = p[1]; syncColorUI('c1', p[1]);
+        $('c2').value = p[2]; syncColorUI('c2', p[2]);
+        $('c3').value = p[3]; syncColorUI('c3', p[3]);
+        updatePaletteActivePill(i);
+        go(false);
+      };
+      paletteContainer.appendChild(btn);
+    });
+
+    function updatePaletteActivePill(idx) {
+      document.querySelectorAll('.palette-pill').forEach((btn, i) => {
+        btn.classList.toggle('active', i == idx);
+      });
+    }
+
+    $('pal').onchange = e => {
+      const p = PALS[e.target.value];
+      $('c1').value = p[1]; syncColorUI('c1', p[1]);
+      $('c2').value = p[2]; syncColorUI('c2', p[2]);
+      $('c3').value = p[3]; syncColorUI('c3', p[3]);
+      updatePaletteActivePill(e.target.value);
+      go(false);
+    };
+
+    // Color Inputs event listeners
+    ['c1', 'c2', 'c3'].forEach(id => {
+      $(id).addEventListener('input', e => {
+        syncColorUI(id, e.target.value);
+        sched();
+      });
+    });
+
+    // Slider badges and sync
+    function updateAllBadges() {
+      $('val-soft').textContent = $('soft').value + '%';
+      $('val-grain').textContent = $('grain').value;
+      $('val-tsz').textContent = $('tsz').value + '%';
+      $('val-tls').textContent = $('tls').value + 'px';
+      $('val-tgl').textContent = $('tgl').value + '%';
+      $('val-trot').textContent = $('trot').value + '°';
+      $('val-puff').textContent = $('puff').value + '%';
+      $('val-shine').textContent = $('shine').value + '%';
+      $('val-str').textContent = $('str').value + '%';
+      $('val-goo').textContent = $('goo').value;
+      $('val-wave').textContent = $('wave').value;
+      $('val-split').textContent = $('split').value;
+      $('val-mx').textContent = $('mx').value + ' KB';
+    }
+
+    const sliderMap = [
+      ['soft', 'val-soft', '%'],
+      ['grain', 'val-grain', ''],
+      ['tsz', 'val-tsz', '%'],
+      ['tls', 'val-tls', 'px'],
+      ['tgl', 'val-tgl', '%'],
+      ['trot', 'val-trot', '°'],
+      ['puff', 'val-puff', '%'],
+      ['shine', 'val-shine', '%'],
+      ['str', 'val-str', '%'],
+      ['goo', 'val-goo', ''],
+      ['wave', 'val-wave', ''],
+      ['split', 'val-split', ''],
+      ['mx', 'val-mx', ' KB']
+    ];
+
+    sliderMap.forEach(([id, badgeId, unit]) => {
+      const el = $(id);
+      if (el) {
+        el.addEventListener('input', () => {
+          $(badgeId).textContent = el.value + unit;
+          sched();
+        });
+      }
+    });
+
+    // Text Alignment segmented buttons
+    const alignBtns = document.querySelectorAll('#align-segmented .segmented-btn');
+    alignBtns.forEach(btn => {
+      btn.onclick = () => {
+        alignBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        $('tpos').value = btn.dataset.pos;
+        sched();
+      };
+    });
+
+    // Inputs to schedule render
+    ['txt', 'font', 'tstyle', 'tup', 'tl', 'style', 'w', 'h', 'mat', 'ov', 'vg'].forEach(id => {
+      const el = $(id);
+      if (el) el.addEventListener('input', sched);
+    });
+
+    function guides() {
+      const g = $('guide'), W = cv.width, H = cv.height;
+      const isHeader = $('mode').value == 'Header';
+      g.style.display = $('gd').checked ? 'block' : 'none';
+      const pcGuide = g.querySelector('i');
+      if (pcGuide) {
+        pcGuide.style.width = Math.min(100, (isHeader ? 960 / W : H * 9 / 16 / W) * 100) + '%';
+      }
+      $('btn-toggle-guides').classList.toggle('active', $('gd').checked);
+    }
+
+    $('gd').oninput = guides;
+    $('btn-toggle-guides').onclick = () => {
+      $('gd').checked = !$('gd').checked;
+      guides();
+      showToast($('gd').checked ? '📏 Safe Guides Enabled' : '📏 Safe Guides Hidden');
+    };
+
+    $('preset').onchange = e => {
+      if (e.target.value != 'c') {
+        const [a, b] = e.target.value.split(',');
+        $('w').value = a;
+        $('h').value = b;
+        go(false);
+      }
+    };
+
+    // Modal Tile preview
+    $('btn-open-tile-modal').onclick = () => {
+      prev();
+      $('tile-modal').classList.add('open');
+    };
+    $('btn-close-modal').onclick = () => {
+      $('tile-modal').classList.remove('open');
+    };
+    $('tile-modal').onclick = e => {
+      if (e.target.id == 'tile-modal') $('tile-modal').classList.remove('open');
+    };
+    $('btn-toggle-mockup').onclick = () => {
+      const mock = $('tile-mockup');
+      mock.style.display = mock.style.display == 'none' ? 'flex' : 'none';
+    };
+
+    // Copy to clipboard
+    async function copyToClipboard() {
+      try {
+        const blob = await new Promise(r => cv.toBlob(r, 'image/png'));
+        if (navigator.clipboard && window.ClipboardItem) {
+          await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
+          showToast('📋 Rendered image copied to clipboard!');
+        } else {
+          showToast('⚠️ Clipboard image copy not supported in this browser');
+        }
+      } catch (err) {
+        showToast('⚠️ Could not copy: ' + err.message);
+      }
+    }
+    $('btn-copy-clipboard').onclick = copyToClipboard;
+
+    // Download Logic with smart downsampling
+    $('dl').onclick = async () => {
+      const f = $('fmt').value;
+      const cap = (+$('mx').value || 1024) * 1024;
+      let c = cv, q = .95, b;
+      const mk = (cc, qq) => new Promise(r => cc.toBlob(r, f, qq));
+      b = await mk(c, q);
+      while (b.size > cap && f == 'image/jpeg' && q > .45) {
+        q -= .07;
+        b = await mk(c, q);
+      }
+      let sc = 1;
+      while (b.size > cap && sc > .4) {
+        sc *= .85;
+        c = document.createElement('canvas');
+        c.width = cv.width * sc | 0;
+        c.height = cv.height * sc | 0;
+        c.getContext('2d').drawImage(cv, 0, 0, c.width, c.height);
+        b = await mk(c, Math.max(q, .6));
+      }
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(b);
+      const isHeader = $('mode').value == 'Header';
+      const ext = f == 'image/png' ? 'png' : 'jpg';
+      a.download = (isHeader ? 'booth-header.' : 'booth-background.') + ext;
+      a.click();
+      const kb = (b.size / 1024).toFixed(0);
+      $('info').textContent = `Saved ${c.width}×${c.height}, ${kb} KB` + (b.size > cap ? ' (over limit - try JPG/less grain)' : '');
+      showToast(`💾 Downloaded ${a.download} (${kb} KB)`);
+    };
+
+    // Accordion Expand / Collapse
+    document.querySelectorAll('.panel-header').forEach(hdr => {
+      hdr.onclick = () => {
+        hdr.parentElement.classList.toggle('open');
+      };
+    });
+
+    
+    // Viewport Zoom Engine
+    let currentZoomMode = 'fit';
+    let zoomScale = 1.0;
+
+    function setZoom(mode, customScale) {
+      const cvEl = $('cv');
+      const indicator = $('zoom-indicator');
+
+      if (mode === 'fit') {
+        currentZoomMode = 'fit';
+        cvEl.style.width = 'auto';
+        cvEl.style.height = 'auto';
+        cvEl.style.maxWidth = '100%';
+        cvEl.style.maxHeight = 'calc(100vh - var(--header-height) - 130px)';
+        indicator.textContent = 'Fit View';
+      } else {
+        currentZoomMode = 'scale';
+        if (customScale !== undefined) zoomScale = customScale;
+        zoomScale = Math.max(0.2, Math.min(3.0, zoomScale));
+        cvEl.style.maxWidth = 'none';
+        cvEl.style.maxHeight = 'none';
+        cvEl.style.width = Math.round(cv.width * zoomScale) + 'px';
+        cvEl.style.height = Math.round(cv.height * zoomScale) + 'px';
+        indicator.textContent = Math.round(zoomScale * 100) + '%';
+      }
+    }
+
+    $('btn-zoom-fit').onclick = () => setZoom('fit');
+    $('btn-zoom-100').onclick = () => setZoom('scale', 1.0);
+    $('btn-zoom-in').onclick = () => {
+      const base = currentZoomMode === 'fit' ? (cv.clientWidth / cv.width) : zoomScale;
+      setZoom('scale', base + 0.25);
+    };
+    $('btn-zoom-out').onclick = () => {
+      const base = currentZoomMode === 'fit' ? (cv.clientWidth / cv.width) : zoomScale;
+      setZoom('scale', Math.max(0.2, base - 0.25));
+    };
+
+    // Keyboard Shortcuts
+    window.addEventListener('keydown', e => {
+      if (['INPUT', 'SELECT', 'TEXTAREA'].includes(e.target.tagName)) return;
+      if (e.code === 'Space') {
+        e.preventDefault();
+        go(true);
+        showToast('🎲 Generated new variation');
+      } else if (e.key === 'g' || e.key === 'G') {
+        $('btn-toggle-guides').click();
+      } else if (e.key === 't' || e.key === 'T') {
+        if ($('tile-modal').classList.contains('open')) {
+          $('btn-close-modal').click();
+        } else {
+          $('btn-open-tile-modal').click();
+        }
+      } else if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+        e.preventDefault();
+        $('dl').click();
+      }
+    });
+
+    // Initial setup
+    myColors();
+    $('mat').value = 'Tinted';
+    updateAllBadges();
+    go(true);
+    guides();
+  </script>
+</body>
+</html>
