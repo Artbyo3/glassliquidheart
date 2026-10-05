@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Glass Liquid Heart | BOOTH Aesthetic Studio</title>
-  <meta name="description" content="Next-gen procedural Metalheart, Liquid Metal, Liquid Glass, and Y2K aesthetic background & header generator for BOOTH shops.">
+  <title>Glass Liquid Heart | Procedural Graphics Studio</title>
+  <meta name="description" content="Next-gen procedural Metalheart, Liquid Metal, Liquid Glass, and Y2K aesthetic graphics generator.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💖</text></svg>">
 
   <!-- Embedded base64 woff2 fonts -->
@@ -425,7 +425,7 @@
       transform: translateX(-50%);
     }
     #guide i::before {
-      content: 'PC SAFE AREA';
+      content: 'WIDE SAFE BOUNDS';
       position: absolute;
       top: 8px;
       left: 8px;
@@ -448,7 +448,7 @@
       box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.7);
     }
     #guide b::before {
-      content: 'PHONE SAFE ZONE';
+      content: 'CENTER FOCUS ZONE';
       position: absolute;
       top: 6px;
       left: 6px;
@@ -969,7 +969,7 @@
       backdrop-filter: blur(2px);
       pointer-events: none;
     }
-    .mock-shop-card {
+    .mock-preview-card {
       background: rgba(22, 24, 34, 0.9);
       border: 1px solid var(--border-glass);
       border-radius: 16px;
@@ -1065,7 +1065,7 @@
         </svg>
       </div>
       <div class="brand-meta">
-        <h1 class="brand-title">GLASS LIQUID HEART <span class="brand-badge">BOOTH Studio</span></h1>
+        <h1 class="brand-title">GLASS LIQUID HEART <span class="brand-badge">Procedural Studio</span></h1>
         <p class="brand-desc">Procedural Metalheart & Liquid Glass Generator</p>
       </div>
     </div>
@@ -1074,11 +1074,11 @@
     <div class="mode-switch">
       <button class="mode-btn active" id="btn-mode-bg" data-mode="Background">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-        Shop Background
+        Wallpaper / Art
       </button>
       <button class="mode-btn" id="btn-mode-hd" data-mode="Header">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="10" rx="2"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
-        Shop Header
+        Banner / Wide
       </button>
       <!-- Hidden compatibility select for existing code -->
       <select id="mode" style="display:none;"><option selected>Background</option><option>Header</option></select>
@@ -1126,7 +1126,7 @@
             <button class="btn btn-sm btn-ghost" id="btn-zoom-100" style="padding:4px 8px;font-size:11px;" title="100% Scale">100%</button>
             <button class="btn btn-sm btn-ghost" id="btn-zoom-in" style="padding:4px 8px;" title="Zoom In">+</button>
           </div>
-          <button class="tool-toggle" id="btn-toggle-guides" title="Toggle BOOTH Safe Zone Overlays (G)">
+          <button class="tool-toggle" id="btn-toggle-guides" title="Toggle Composition Safe Zone Guides (G)">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg>
             Safe Guides <span class="kbd">G</span>
           </button>
@@ -1155,7 +1155,7 @@
       <!-- Stage Footer / Status Bar -->
       <div class="stage-footer">
         <div class="footer-tip">
-          <span>💡 BOOTH Tip:</span> Keep vital text & logos in the centre yellow box — outer edges get cropped on smartphones.
+          <span>💡 Studio Tip:</span> Keep primary text and focal elements in the centre focus zone to remain visible across all device viewports.
         </div>
         <div class="footer-status" id="info">
           Ready to generate
@@ -1188,10 +1188,10 @@
           <div class="field-group">
             <label class="field-label" for="preset">Preset Resolution</label>
             <select id="preset" autocomplete="off">
-              <option value="1920,1080" selected>Background 1920×1080 (Standard HD)</option>
-              <option value="2560,1440">Background 2560×1440 (2K Hi-Res)</option>
-              <option value="1920,480">Header 1920×480</option>
-              <option value="1920,600">Header 1920×600</option>
+              <option value="1920,1080" selected>Wallpaper 1920×1080 (Full HD)</option>
+              <option value="2560,1440">Wallpaper 2560×1440 (2K QHD)</option>
+              <option value="1920,480">Banner 1920×480</option>
+              <option value="1920,600">Banner 1920×600</option>
               <option value="512,512">Seamless Tile 512×512</option>
               <option value="1024,1024">Seamless Tile 1024×1024</option>
               <option value="c">Custom Dimensions</option>
@@ -1237,7 +1237,7 @@
 
           <div class="field-group">
             <label class="field-label" for="mx">
-              <span>Max File Size (BOOTH limit)</span>
+              <span>Max File Size (Target Cap)</span>
               <span class="val-badge" id="val-mx">1024 KB</span>
             </label>
             <input type="number" id="mx" value="1024" min="100" max="10240" autocomplete="off">
@@ -1352,14 +1352,14 @@
         <div class="panel-header">
           <div class="panel-title">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
-            Typography & Shop Branding
+            Typography & Text Overlay
           </div>
           <svg class="panel-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="panel-body">
           <div class="field-group">
-            <label class="field-label" for="txt">Shop Text / Title</label>
-            <input type="text" id="txt" placeholder="Enter shop name (or leave empty for clean background)" autocomplete="off">
+            <label class="field-label" for="txt">Text Overlay</label>
+            <input type="text" id="txt" placeholder="Enter text (e.g. LIQUID, CHROME) or leave empty" autocomplete="off">
           </div>
 
           <div class="field-group">
@@ -1595,23 +1595,23 @@
           Seamless 3×2 Repeat Inspector
         </div>
         <div style="display: flex; gap: 8px;">
-          <button class="btn btn-sm" id="btn-toggle-mockup">Toggle BOOTH Mockup</button>
+          <button class="btn btn-sm" id="btn-toggle-mockup">Toggle UI Card Preview</button>
           <button class="btn btn-sm btn-ghost" id="btn-close-modal">✕ Close</button>
         </div>
       </div>
       <div class="modal-body">
         <p style="font-size: 12px; color: var(--text-muted);">
-          Inspect how your pattern tiles seamlessly across BOOTH shop backgrounds. Turn on "Seamless Tile" in the inspector to verify edge alignment.
+          Inspect how your pattern tiles seamlessly across repeating backgrounds and wide displays. Turn on "Seamless Tile" in the inspector to verify edge alignment.
         </p>
         <div class="tile-preview-stage" id="tp-modal-stage">
           <div class="tile-mockup-overlay" id="tile-mockup" style="display: none;">
-            <div class="mock-shop-card">
+            <div class="mock-preview-card">
               <div class="mock-avatar">💖</div>
-              <h3 style="font-size: 18px; margin-bottom: 6px; font-weight: 800;">YOUR SHOP NAME</h3>
-              <p style="font-size: 12px; color: #a0aec0; margin-bottom: 14px;">3D Avatars, VRChat Assets & Y2K Aesthetics</p>
+              <h3 style="font-size: 18px; margin-bottom: 6px; font-weight: 800;">GLASS LIQUID HEART</h3>
+              <p style="font-size: 12px; color: #a0aec0; margin-bottom: 14px;">Procedural Shader & Generative Visuals</p>
               <div style="display: flex; gap: 8px; justify-content: center;">
-                <span class="brand-badge">★ 5.0 Rating</span>
-                <span class="brand-badge">BOOTH Verified</span>
+                <span class="brand-badge">★ Procedural Engine</span>
+                <span class="brand-badge">Real-Time Shader</span>
               </div>
             </div>
           </div>
@@ -2571,8 +2571,8 @@
       showToast('🎨 Randomized color palette');
     };
 
-    const BGO = '<option value="1920,1080" selected>Background 1920×1080 (Standard HD)</option><option value="2560,1440">Background 2560×1440 (2K Hi-Res)</option><option value="1920,480">Header 1920×480</option><option value="1920,600">Header 1920×600</option><option value="512,512">Seamless Tile 512×512</option><option value="1024,1024">Seamless Tile 1024×1024</option><option value="c">Custom Dimensions</option>';
-    const HDO = '<option value="1500,500" selected>Header 1500×500 (recommended)</option><option value="960,300">Header 960×300 (compact)</option><option value="960,400">Header 960×400</option><option value="1500,600">Header 1500×600</option><option value="2000,667">Header 2000×667 (hi-res)</option><option value="c">Custom Dimensions</option>';
+    const BGO = '<option value="1920,1080" selected>Wallpaper 1920×1080 (Full HD)</option><option value="2560,1440">Wallpaper 2560×1440 (2K QHD)</option><option value="1920,480">Banner 1920×480</option><option value="1920,600">Banner 1920×600</option><option value="512,512">Seamless Tile 512×512</option><option value="1024,1024">Seamless Tile 1024×1024</option><option value="c">Custom Dimensions</option>';
+    const HDO = '<option value="1500,500" selected>Banner 1500×500 (Standard)</option><option value="960,300">Banner 960×300 (Compact)</option><option value="960,400">Banner 960×400</option><option value="1500,600">Banner 1500×600</option><option value="2000,667">Banner 2000×667 (Hi-Res)</option><option value="c">Custom Dimensions</option>';
 
     function setMode(mode) {
       const hd = mode == 'Header';
@@ -2596,7 +2596,7 @@
       const r = (a, b) => Math.round(a + Math.random() * (b - a));
       const o = Math.random;
       const fs = [...$('font').querySelectorAll('optgroup:not([label^="Japanese"]) option')].map(e => e.value);
-      if (!$('txt').value.trim()) $('txt').value = 'MY SHOP';
+      if (!$('txt').value.trim()) $('txt').value = 'LIQUID';
       $('font').value = pk(fs);
       $('tstyle').value = pk(['Chrome', 'Chrome', 'Chrome', 'Glass', 'Sticker', 'Neon', 'Outline', '3D', 'Gradient']);
       $('tsz').value = r(90, 125);
@@ -2620,7 +2620,7 @@
       $('goo').value = 35;
       $('wave').value = 30;
       $('split').value = 25;
-      if (!$('txt').value.trim()) $('txt').value = 'MY SHOP';
+      if (!$('txt').value.trim()) $('txt').value = 'CHROME';
       updateAllBadges();
       go(false);
       showToast('💥 Disruptive Y2K glitch applied');
@@ -2838,7 +2838,7 @@
       a.href = URL.createObjectURL(b);
       const isHeader = $('mode').value == 'Header';
       const ext = f == 'image/png' ? 'png' : 'jpg';
-      a.download = (isHeader ? 'booth-header.' : 'booth-background.') + ext;
+      a.download = (isHeader ? 'procedural-banner.' : 'procedural-art.') + ext;
       a.click();
       const kb = (b.size / 1024).toFixed(0);
       $('info').textContent = `Saved ${c.width}×${c.height}, ${kb} KB` + (b.size > cap ? ' (over limit - try JPG/less grain)' : '');

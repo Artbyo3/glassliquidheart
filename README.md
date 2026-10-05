@@ -1,4 +1,4 @@
-# 💖 Glass Liquid Heart — BOOTH Aesthetic Studio
+# 💖 Glass Liquid Heart — Procedural Graphics Studio
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![GitHub Pages](https://img.shields.io/badge/Deploy-GitHub%20Pages-success?logo=github)](https://pages.github.com/)
@@ -6,15 +6,15 @@
 [![Zero Dependencies](https://img.shields.io/badge/Dependencies-Zero-brightgreen)](package.json)
 [![Offline Capable](https://img.shields.io/badge/Offline-100%25%20Self--Contained-purple)](#fonts--typography)
 
-A next-generation procedural graphics studio for generating **Y2K Liquid Chrome**, **Metalheart**, **Refractive Liquid Glass**, and **Cyberpunk typography** artworks. Designed specifically for **BOOTH** shop backgrounds, headers, banners, and repeating seamless textures.
+A lightweight, high-performance procedural graphics studio for generating **Y2K Liquid Chrome**, **Metalheart**, **Refractive Liquid Glass**, and **Cyberpunk Typography** designs directly in the browser. Perfect for generating wallpapers, social banners, seamless repeating textures, digital album art, and abstract backgrounds.
 
 ---
 
 ## ✨ Features
 
 - 🔮 **Procedural Metalheart & Liquid Metal Engine**
-  - Heightfield mathematical synthesis with toroidal wave interference.
-  - Real-time surface normal calculation, diffuse and specular ray highlighting.
+  - Continuous heightfield synthesis using multi-frequency toroidal wave interference.
+  - Real-time surface normal calculation, diffuse shading, and specular ray highlights.
   - Material finishes: *Tinted*, *Silver*, *Gold*, *Rose Gold*, and *Holographic Iridescence*.
 
 - 💎 **Liquid Glass & Refractive Metaballs**
@@ -31,12 +31,12 @@ A next-generation procedural graphics studio for generating **Y2K Liquid Chrome*
   - **RGB Chromatic Aberration**: Dual-channel color fringe splitting.
 
 - 🔄 **Seamless Toroidal Tiling**
-  - Coordinate space wrapping for infinite seamless repeat textures on BOOTH pages.
-  - Built-in **3×2 Tile Inspector** with live BOOTH store mockup overlay.
+  - Coordinate space wrapping for infinite seamless repeat textures and patterns.
+  - Built-in **3×2 Tile Inspector** with live UI preview overlay.
 
-- 📐 **BOOTH Shop Safe Zones & Smart Compression**
-  - Live guides showing desktop viewport bounds and mobile phone safe crop zones.
-  - Iterative quality and dimensional downsampling engine to ensure exports never exceed BOOTH file size limits.
+- 📐 **Composition Guides & Smart Export Compression**
+  - Visual overlay guides for desktop wide bounds and center focus safe zones.
+  - Iterative quality and dimensional downsampling engine ensuring exports meet user-defined target file size limits.
 
 - 🔤 **60+ Embedded Offline Fonts**
   - Self-contained WOFF2 font library spanning *Disruptive Blobby*, *Y2K Tech / Futuristic*, *Gothic Blackletter*, *Fat Serifs*, and *Japanese Typography*.
@@ -45,7 +45,7 @@ A next-generation procedural graphics studio for generating **Y2K Liquid Chrome*
 
 ## 🚀 Quick Start
 
-### Option 1: Direct Local Use (No installation needed)
+### Option 1: Direct Local Use (No install needed)
 Simply open [`index.html`](index.html) directly in any modern web browser (Chrome, Firefox, Safari, Edge).
 
 ### Option 2: Local Static Server
@@ -84,20 +84,22 @@ This repository is pre-configured for instant zero-configuration deployment to *
 | :--- | :--- |
 | <kbd>Space</kbd> | Randomize background seed & variation |
 | <kbd>Ctrl</kbd> + <kbd>S</kbd> / <kbd>⌘</kbd> + <kbd>S</kbd> | Export / Download artwork |
-| <kbd>G</kbd> | Toggle BOOTH safe-zone guidelines |
+| <kbd>G</kbd> | Toggle composition safe-zone guidelines |
 | <kbd>T</kbd> | Toggle seamless 3×2 tile inspector |
 | <kbd>Copy Button</kbd> | Copy rendered artwork directly to clipboard |
 
 ---
 
-## 📐 BOOTH Recommended Dimensions Cheat Sheet
+## 📐 Canvas Dimension Presets
 
-| Asset Type | Recommended Size | Notes |
-| :--- | :--- | :--- |
-| **Shop Background** | `1920 × 1080` or `2560 × 1440` | Use *Seamless Tile* mode for repeating backgrounds |
-| **Shop Header (PC & Mobile)** | `1500 × 500` | Keep vital logos and text inside the yellow safe box |
-| **Compact Header** | `960 × 300` | Lightweight option for fast loading |
-| **Seamless Tile Square** | `512 × 512` or `1024 × 1024` | Ideal for fast seamless repeating patterns |
+| Preset | Dimensions | Aspect Ratio | Best For |
+| :--- | :--- | :--- | :--- |
+| **Wallpaper Full HD** | `1920 × 1080` | `16:9` | Desktop wallpapers, display backdrops |
+| **Wallpaper 2K QHD** | `2560 × 1440` | `16:9` | High-DPI monitors, high-res digital art |
+| **Wide Banner** | `1500 × 500` | `3:1` | Profile headers, social media banners, hero strips |
+| **Ultra-Wide Strip** | `1920 × 480` | `4:1` | Panoramic strips, website headers |
+| **Seamless Tile (Small)** | `512 × 512` | `1:1` | Repeating CSS backgrounds, game textures |
+| **Seamless Tile (HD)** | `1024 × 1024` | `1:1` | High-detail tiling patterns, 3D surface maps |
 
 ---
 
