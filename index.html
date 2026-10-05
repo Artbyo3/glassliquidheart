@@ -403,42 +403,7 @@
       letter-spacing: 0.05em;
     }
 
-    /* Stage Footer / Info Bar */
-    .stage-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 20px;
-      background: var(--bg-surface-glass);
-      backdrop-filter: blur(8px);
-      border-top: 1px solid var(--border-subtle);
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-    .footer-tip {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      max-width: 60%;
-    }
-    .footer-tip span {
-      color: #ffd166;
-    }
-    .footer-status {
-      font-family: var(--font-mono);
-      color: var(--accent-c3);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .footer-status::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--accent-c3);
-      box-shadow: 0 0 8px var(--accent-c3);
-    }
+
 
     /* Right: Studio Inspector Sidebar */
     .studio-sidebar {
@@ -1077,13 +1042,7 @@
         </div>
       </div>
 
-      <!-- Stage Footer / Status Bar -->
-      <div class="stage-footer">
-        <div style="font-family: var(--font-mono); font-size: 11px; color: var(--text-muted);" id="footer-dimensions">1920 × 1080</div>
-        <div class="footer-status" id="info">
-          Ready
-        </div>
-      </div>
+
     </section>
 
     <!-- Studio Inspector (Sidebar) -->
@@ -2447,8 +2406,7 @@
       const g = gcd(W, H);
       const aspect = (W / g <= 32 && H / g <= 32) ? `${W / g}:${H / g}` : (W / H).toFixed(2) + ':1';
       $('aspect-indicator').textContent = aspect;
-      const footDim = $('footer-dimensions');
-      if (footDim) footDim.textContent = `${W} × ${H} px (${aspect})`;
+
     }
 
     function go(newSeed) {
@@ -2786,7 +2744,7 @@
       a.download = (isHeader ? 'procedural-banner.' : 'procedural-art.') + ext;
       a.click();
       const kb = (b.size / 1024).toFixed(0);
-      $('info').textContent = `Saved ${c.width}×${c.height}, ${kb} KB` + (b.size > cap ? ' (over limit - try JPG/less grain)' : '');
+      if ($('info')) $('info').textContent = `Saved ${c.width}×${c.height}, ${kb} KB`;
       showToast(`Downloaded ${a.download} (${kb} KB)`);
     };
 
@@ -2811,7 +2769,7 @@
         cvEl.style.width = 'auto';
         cvEl.style.height = 'auto';
         cvEl.style.maxWidth = '100%';
-        cvEl.style.maxHeight = 'calc(100vh - var(--header-height) - 130px)';
+        cvEl.style.maxHeight = 'calc(100vh - var(--header-height) - 80px)';
         indicator.textContent = 'Fit View';
       } else {
         currentZoomMode = 'scale';
