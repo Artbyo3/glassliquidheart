@@ -41,7 +41,7 @@ npx serve .
 | Shortcut | Action |
 | :--- | :--- |
 | <kbd>Space</kbd> | Randomize variation |
-| <kbd>Ctrl</kbd> + <kbd>S</kbd> / <kbd>⌘</kbd> + <kbd>S</kbd> | Export image |
+| <kbd>Ctrl</kbd> + <kbd>S</kbd> / <kbd>Cmd</kbd> + <kbd>S</kbd> | Export image |
 | <kbd>G</kbd> | Toggle composition guides |
 | <kbd>T</kbd> | Toggle 3×2 tile repeat inspector |
 

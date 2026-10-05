@@ -1094,7 +1094,7 @@
           Inspector Controls
         </div>
         <button class="btn btn-sm btn-ghost" id="rstc" title="Reset to default colors">
-          ↺ Reset
+          Reset
         </button>
       </div>
 
@@ -1134,22 +1134,22 @@
 
           <div class="switches-grid">
             <label class="switch-card">
-              <span class="switch-label">🔄 Seamless Tile</span>
+              <span class="switch-label">Seamless Tile</span>
               <input type="checkbox" id="tl" checked autocomplete="off">
               <div class="switch-toggle"></div>
             </label>
             <label class="switch-card">
-              <span class="switch-label">📱 Safe Guides</span>
+              <span class="switch-label">Safe Guides</span>
               <input type="checkbox" id="gd" autocomplete="off">
               <div class="switch-toggle"></div>
             </label>
             <label class="switch-card">
-              <span class="switch-label">🌑 Vignette</span>
+              <span class="switch-label">Vignette</span>
               <input type="checkbox" id="vg" checked autocomplete="off">
               <div class="switch-toggle"></div>
             </label>
             <label class="switch-card">
-              <span class="switch-label">💎 Glass Overlay</span>
+              <span class="switch-label">Glass Overlay</span>
               <input type="checkbox" id="ov" autocomplete="off">
               <div class="switch-toggle"></div>
             </label>
@@ -1243,7 +1243,7 @@
             <div class="field-label">
               <span>Color Presets</span>
               <button class="btn btn-sm btn-ghost" id="rndc" style="padding:2px 6px;">
-                🎨 Random Colors
+                Random Colors
               </button>
             </div>
             <div class="palettes-row" id="palette-buttons-container"></div>
@@ -1375,8 +1375,8 @@
           </div>
 
           <div class="button-grid-2">
-            <button class="btn btn-sm" id="rt">🎲 Randomize Text</button>
-            <button class="btn btn-sm" id="dis">💥 Disruptive Y2K</button>
+            <button class="btn btn-sm" id="rt">Randomize Text</button>
+            <button class="btn btn-sm" id="dis">Disruptive Style</button>
           </div>
 
           <div class="input-row">
@@ -1407,7 +1407,7 @@
           </div>
 
           <label class="switch-card">
-            <span class="switch-label">🔠 Force UPPERCASE</span>
+            <span class="switch-label">Force Uppercase</span>
             <input type="checkbox" id="tup" autocomplete="off">
             <div class="switch-toggle"></div>
           </label>
@@ -1519,7 +1519,7 @@
         </div>
         <div style="display: flex; gap: 8px;">
           <button class="btn btn-sm" id="btn-toggle-mockup">Toggle UI Card Preview</button>
-          <button class="btn btn-sm btn-ghost" id="btn-close-modal">✕ Close</button>
+          <button class="btn btn-sm btn-ghost" id="btn-close-modal">Close</button>
         </div>
       </div>
       <div class="modal-body">
@@ -1533,7 +1533,7 @@
               <h3 style="font-size: 18px; margin-bottom: 6px; font-weight: 800;">PREVIEW</h3>
               <p style="font-size: 12px; color: #a0aec0; margin-bottom: 14px;">Procedural Shader & Generative Visuals</p>
               <div style="display: flex; gap: 8px; justify-content: center;">
-                <span class="brand-badge">★ Procedural Engine</span>
+                <span class="brand-badge">Procedural Engine</span>
                 <span class="brand-badge">Real-Time Shader</span>
               </div>
             </div>
@@ -2489,12 +2489,12 @@
     $('rstc').onclick = () => {
       myColors();
       go(false);
-      showToast('↺ Colors reset to default');
+      showToast('Colors reset to default');
     };
 
     $('rnd').onclick = () => {
       go(true);
-      showToast('🎲 Generated new variation');
+      showToast('Generated variation');
     };
 
     $('rndc').onclick = () => {
@@ -2513,7 +2513,7 @@
       $('c2').value = col2; syncColorUI('c2', col2);
       $('c3').value = col3; syncColorUI('c3', col3);
       go(true);
-      showToast('🎨 Randomized color palette');
+      showToast('Randomized color palette');
     };
 
     const BGO = '<option value="1920,1080" selected>Wallpaper 1920×1080 (Full HD)</option><option value="2560,1440">Wallpaper 2560×1440 (2K QHD)</option><option value="1920,480">Banner 1920×480</option><option value="1920,600">Banner 1920×600</option><option value="512,512">Seamless Tile 512×512</option><option value="1024,1024">Seamless Tile 1024×1024</option><option value="c">Custom Dimensions</option>';
@@ -2556,7 +2556,7 @@
       $('split').value = o() < .6 ? 0 : r(10, 35);
       updateAllBadges();
       go(false);
-      showToast('🎲 Randomized typography style');
+      showToast('Randomized typography');
     };
 
     $('dis').onclick = () => {
@@ -2568,7 +2568,7 @@
       if (!$('txt').value.trim()) $('txt').value = 'CHROME';
       updateAllBadges();
       go(false);
-      showToast('💥 Disruptive Y2K glitch applied');
+      showToast('Disruptive style applied');
     };
 
     let T;
@@ -2715,7 +2715,7 @@
     $('btn-toggle-guides').onclick = () => {
       $('gd').checked = !$('gd').checked;
       guides();
-      showToast($('gd').checked ? '📏 Safe Guides Enabled' : '📏 Safe Guides Hidden');
+      showToast($('gd').checked ? 'Safe guides enabled' : 'Safe guides hidden');
     };
 
     $('preset').onchange = e => {
@@ -2749,12 +2749,12 @@
         const blob = await new Promise(r => cv.toBlob(r, 'image/png'));
         if (navigator.clipboard && window.ClipboardItem) {
           await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
-          showToast('📋 Rendered image copied to clipboard!');
+          showToast('Image copied to clipboard');
         } else {
-          showToast('⚠️ Clipboard image copy not supported in this browser');
+          showToast('Clipboard copy not supported');
         }
       } catch (err) {
-        showToast('⚠️ Could not copy: ' + err.message);
+        showToast('Could not copy: ' + err.message);
       }
     }
     $('btn-copy-clipboard').onclick = copyToClipboard;
@@ -2787,7 +2787,7 @@
       a.click();
       const kb = (b.size / 1024).toFixed(0);
       $('info').textContent = `Saved ${c.width}×${c.height}, ${kb} KB` + (b.size > cap ? ' (over limit - try JPG/less grain)' : '');
-      showToast(`💾 Downloaded ${a.download} (${kb} KB)`);
+      showToast(`Downloaded ${a.download} (${kb} KB)`);
     };
 
     // Accordion Expand / Collapse
@@ -2842,7 +2842,7 @@
       if (e.code === 'Space') {
         e.preventDefault();
         go(true);
-        showToast('🎲 Generated new variation');
+        showToast('Generated variation');
       } else if (e.key === 'g' || e.key === 'G') {
         $('btn-toggle-guides').click();
       } else if (e.key === 't' || e.key === 'T') {
