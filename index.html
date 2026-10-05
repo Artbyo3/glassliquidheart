@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Glass Liquid Heart</title>
   <meta name="description" content="Procedural canvas generator.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💖</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23181b26%22/><circle cx=%2250%22 cy=%2250%22 r=%2228%22 fill=%22%2378b7ff%22/></svg>">
 
   <!-- Embedded base64 woff2 fonts -->
   <link rel="stylesheet" href="fonts.css">
@@ -98,38 +98,6 @@
       position: sticky;
       top: 0;
       z-index: 100;
-    }
-
-    .brand-group {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .brand-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: var(--radius-md);
-      background: linear-gradient(135deg, #1f2538 0%, #11131a 100%);
-      border: 1px solid var(--border-glass);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 16px rgba(194, 133, 255, 0.15);
-      position: relative;
-      overflow: hidden;
-    }
-    .brand-icon svg {
-      width: 20px;
-      height: 20px;
-      filter: drop-shadow(0 0 6px #c285ff);
-    }
-
-    .brand-title {
-      font-size: 15px;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      color: var(--text-main);
     }
 
     /* Mode Segmented Switch */
@@ -1025,21 +993,7 @@
 
   <!-- Top Studio Navigation Bar -->
   <header class="studio-header">
-    <div class="brand-group">
-      <div class="brand-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" fill="url(#brandGrad)"/>
-          <defs>
-            <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#78b7ff"/>
-              <stop offset="50%" stop-color="#c285ff"/>
-              <stop offset="100%" stop-color="#66ffc2"/>
-            </linearGradient>
-          </defs>
-        </svg>
-      </div>
-      <h1 class="brand-title">Glass Liquid Heart</h1>
-    </div>
+    
 
     <!-- Center Mode Switcher -->
     <div class="mode-switch">
@@ -1575,8 +1529,8 @@
         <div class="tile-preview-stage" id="tp-modal-stage">
           <div class="tile-mockup-overlay" id="tile-mockup" style="display: none;">
             <div class="mock-preview-card">
-              <div class="mock-avatar">💖</div>
-              <h3 style="font-size: 18px; margin-bottom: 6px; font-weight: 800;">GLASS LIQUID HEART</h3>
+              
+              <h3 style="font-size: 18px; margin-bottom: 6px; font-weight: 800;">PREVIEW</h3>
               <p style="font-size: 12px; color: #a0aec0; margin-bottom: 14px;">Procedural Shader & Generative Visuals</p>
               <div style="display: flex; gap: 8px; justify-content: center;">
                 <span class="brand-badge">★ Procedural Engine</span>

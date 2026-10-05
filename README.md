@@ -1,4 +1,4 @@
-# 💖 Glass Liquid Heart
+# Glass Liquid Heart
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![GitHub Pages](https://img.shields.io/badge/Deploy-GitHub%20Pages-success?logo=github)](https://pages.github.com/)
