@@ -1561,7 +1561,7 @@
       const container = $('toast-container');
       const toast = document.createElement('div');
       toast.className = 'toast';
-      toast.innerHTML = msg;
+      toast.textContent = msg;
       container.appendChild(toast);
       setTimeout(() => {
         toast.classList.add('hide');
